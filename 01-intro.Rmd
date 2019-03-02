@@ -19,3 +19,11 @@ knitr::kable(
 ```
 
 You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
+
+
+##New text
+```{r login, fig.cap='Login to the web RStudio with username and password provided for the workshop', out.width='80%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics(rep("images/RStudio_login.png", 3))
+```
+
+
