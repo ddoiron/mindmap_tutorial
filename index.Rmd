@@ -12,16 +12,22 @@ github-repo: rstudio/bookdown-demo
 description: "This is a short tutorial on how to use the MINDMAP data platform in RStudio."
 ---
 
-# Prerequisites
+# Tutorial overview
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
+Using harmonized data from two MINDMAP studies, participants will learn:
+* How to access the harmonized data on the Opal server via the Web RStudio interface
+* How to manipulate harmonized data in the R environment
+* How to generate study specific and pooled descriptive statistics in the RStudio environment
+* How to run study specific and pooled regression analyses in the R environment
 
-The **bookdown** package can be installed from CRAN or Github:
+The `install.packages()` command allows you to install R packages for your analyses. Run the code below to install packages needed for this tutorial
 
 ```{r eval=FALSE}
-install.packages("bookdown")
-# or the development version
-# devtools::install_github("rstudio/bookdown")
+# Install and load required libraries for this tutorial
+install.packages("epiDisplay")
+install.packages("tidyverse")
+library(epiDisplay)
+library(tidyverse)
 ```
 
 Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
