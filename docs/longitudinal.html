@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Section 6 Final Words | MINDMAP data platform tutorial</title>
+  <title>Section 5 Longitudinal analyses | MINDMAP data platform tutorial</title>
   <meta name="description" content="This is a short tutorial on how to use the MINDMAP data platform in RStudio.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Section 6 Final Words | MINDMAP data platform tutorial" />
+  <meta property="og:title" content="Section 5 Longitudinal analyses | MINDMAP data platform tutorial" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section 6 Final Words | MINDMAP data platform tutorial" />
+  <meta name="twitter:title" content="Section 5 Longitudinal analyses | MINDMAP data platform tutorial" />
   
   <meta name="twitter:description" content="This is a short tutorial on how to use the MINDMAP data platform in RStudio." />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="longitudinal.html">
-
+<link rel="prev" href="cross-sectional.html">
+<link rel="next" href="final-words.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -146,17 +146,36 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="final-words" class="section level1">
-<h1><span class="header-section-number">Section 6</span> Final Words</h1>
+<div id="longitudinal" class="section level1">
+<h1><span class="header-section-number">Section 5</span> Longitudinal analyses</h1>
+<p>Some <em>significant</em> applications are demonstrated in this chapter.</p>
+<div id="long-to-wide-format" class="section level2">
+<h2><span class="header-section-number">5.1</span> Long to wide format</h2>
+<p>For longitudinal analyses, we need to transform each dataframe (GLOBE and RECORD) from long to wide format. The following scripts does this transformation and saves the new dataframes as globe_data_long and record_data_long.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># GLOBE: wide to long format</span>
+globe_data_long &lt;-<span class="st"> </span>globe_data <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(var, value, <span class="op">-</span>entity_id, <span class="op">-</span>study) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">separate</span>(var, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;time&quot;</span>), <span class="dt">sep =</span> (<span class="st">&quot;_(?=[^_]+$)&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">spread</span>(variable, value)
 
+<span class="co"># RECORD: wide to long format</span>
+record_data_long &lt;-<span class="st"> </span>record_data <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(var, value, <span class="op">-</span>entity_id, <span class="op">-</span>study) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">separate</span>(var, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;time&quot;</span>), <span class="dt">sep =</span> (<span class="st">&quot;_(?=[^_]+$)&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">spread</span>(variable, value)</code></pre></div>
+</div>
+<div id="example-two" class="section level2">
+<h2><span class="header-section-number">5.2</span> Example two</h2>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="longitudinal.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="cross-sectional.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="final-words.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -186,7 +205,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-summary.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-longitudinal.Rmd",
 "text": "Edit"
 },
 "history": {

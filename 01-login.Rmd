@@ -1,0 +1,57 @@
+# Project set up {#login}
+
+##Log in to RStudio
+
+First, open up your web browser and go to <https://obiba.erasmusmc.nl:8445/>. This is the URL for the MINDMAP RStudio instance from which all researchers will analyse data. Enter the username and password provided for this tutorial.
+```{r login, fig.cap='Login to the web RStudio with username and password provided for the workshop', out.width='80%', fig.asp=.75, fig.align='center', echo=FALSE}
+knitr::include_graphics(rep("images/RStudio_login.png"))
+```
+
+Once logged in to RStudio, open the _workshop_scripts.R_ file located in the _Files_ tab in the bottom right corner of the RStudio environment. As the name suggests, this is an .R file in which scripts for this tutorial are saved.
+
+
+##Install and load packages
+Next, we need load R packages we are going to use in this tutorial. To do so, execute the following lines in your R session using the library() command. To execute a script from an R file, place your cursor on the line and Type Ctrl-R.
+
+```{r eval=FALSE}
+# Load required libraries for this tutorial
+library(opal)
+library(tidyverse)
+library(epiDisplay)
+library(lme4)
+library(car)
+```
+
+>Note: we have pre-installed required R packages in your R environment. For your own analyses, you may need to install additional packages at a later date. This is done by using the `install.packages()` command and writing the name of the package in quotations (e.g. install.packages("tidyverse")). 
+
+
+##Log in to Opal
+In order to access harmonized data from RStudio, we need to log in to the Opal server, which hosts the harmonized data for the RECORD and GLOBE studies. To do so, execute the following line of script in this file:
+```{r eval=FALSE}
+# Create an object with your Opal login information (password and username) - these are hidden in your .Rprofile file.
+erasmus_opal <- opal.login()
+```
+This saves your Opal username and password in a object called _erasmus_opal_.
+
+Next, assign the data you want to use in your R session. You can either assign an entire table, or a subset of variables from a table using the variables argument:
+```{r eval=FALSE}
+#Assign RECORD data
+opal.assign.table.tibble(erasmus_opal, 'record_data', 'WORKSHOP.DS_RECORD')
+#opal.assign.table.tibble(erasmus_opal, 'record_data', 'WORKSHOP.DS_RECORD', variables = list("sdc_age_0","sdc_gender_0","sdc_highest_edu_0"))
+
+#Assign GLOBE data
+opal.assign.table.tibble(erasmus_opal, 'globe_data', 'WORKSHOP.DS_GLOBE')
+#opal.assign.table.tibble(erasmus_opal, 'globe_data', 'WORKSHOP.DS_GLOBE',variables = list("sdc_age_0","sdc_gender_0","sdc_highest_edu_0","sdc_income_0","sdc_livstat_0","sdc_retire_0","phy_bmi_all_0","poh_sah_good_0","poh_sah_poor_0","lsb_smk_status_0"))
+
+```
+
+Last, create dataframes in RStudio for your analyses using the following scripts:
+```{r eval=FALSE}
+#Dataframe for RECORD data
+record_data <- opal.execute(erasmus_opal,'record_data')
+
+#Dataframe for GLOBE data
+globe_data <- opal.execute(erasmus_opal,'globe_data')
+```
+
+The `<-` is an assignment operator in R. It creates an object with what is written to its right. You'll notice that when you run the two lines above, dataframes appear in the upper right hand corner window under the _Environment_ tab, indicating the name of the dataframe, the number of observations and number of variables.

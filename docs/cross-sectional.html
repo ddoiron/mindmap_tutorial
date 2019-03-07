@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Section 6 Final Words | MINDMAP data platform tutorial</title>
+  <title>Section 4 Cross-sectional analyses | MINDMAP data platform tutorial</title>
   <meta name="description" content="This is a short tutorial on how to use the MINDMAP data platform in RStudio.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Section 6 Final Words | MINDMAP data platform tutorial" />
+  <meta property="og:title" content="Section 4 Cross-sectional analyses | MINDMAP data platform tutorial" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section 6 Final Words | MINDMAP data platform tutorial" />
+  <meta name="twitter:title" content="Section 4 Cross-sectional analyses | MINDMAP data platform tutorial" />
   
   <meta name="twitter:description" content="This is a short tutorial on how to use the MINDMAP data platform in RStudio." />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="longitudinal.html">
-
+<link rel="prev" href="descriptives.html">
+<link rel="next" href="longitudinal.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -122,7 +122,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.2" data-path="cross-sectional.html"><a href="cross-sectional.html#logistic-regression"><i class="fa fa-check"></i><b>4.2</b> Logistic regression</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="longitudinal.html"><a href="longitudinal.html"><i class="fa fa-check"></i><b>5</b> Longitudinal analyses</a><ul>
-<li class="chapter" data-level="5.1" data-path="longitudinal.html"><a href="longitudinal.html#long-to-wide-format"><i class="fa fa-check"></i><b>5.1</b> Long to wide format</a></li>
+<li class="chapter" data-level="5.1" data-path="longitudinal.html"><a href="longitudinal.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
 <li class="chapter" data-level="5.2" data-path="longitudinal.html"><a href="longitudinal.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
@@ -146,17 +146,32 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="final-words" class="section level1">
-<h1><span class="header-section-number">Section 6</span> Final Words</h1>
+<div id="cross-sectional" class="section level1">
+<h1><span class="header-section-number">Section 4</span> Cross-sectional analyses</h1>
+<p>In this section, simple examples of cross-sectional linear and logistic regressions for single studies and for pooled data are presented.</p>
+<div id="linear-regression" class="section level2">
+<h2><span class="header-section-number">4.1</span> Linear regression</h2>
+<p>The <code>glm()</code> function allows fitting a generalized linear regression model. The example below is a corss-sectional (baseline assessment data) linear regression with body mass index as the outcome and age, sex, education level, household income and smoking status as predictor variables.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># GLM for BMI using GLOBE study</span>
+glm_bmi &lt;-<span class="st"> </span><span class="kw">glm</span>(phy_bmi_all_<span class="dv">0</span> <span class="op">~</span><span class="st"> </span>sdc_age_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_gender_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_highest_edu_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_income_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>lsb_smk_status_<span class="dv">0</span>, <span class="dt">family =</span> gaussian, <span class="dt">data =</span> globe_data)</code></pre></div>
+<p>Using the <code>&lt;-</code> assignment operator allows us to store the results of this analysis in an R object called glm_bmi. Applying the <code>summary()</code> function on this object allows us to see the results.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># See linear regression results</span>
+<span class="kw">summary</span>(glm_bmi)</code></pre></div>
+<p>The <code>glm()</code> function can also be applied to a categorical outcome by specifi</p>
+</div>
+<div id="logistic-regression" class="section level2">
+<h2><span class="header-section-number">4.2</span> Logistic regression</h2>
+<p>For</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="longitudinal.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="descriptives.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="longitudinal.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -186,7 +201,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-summary.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-cross-sectional.Rmd",
 "text": "Edit"
 },
 "history": {

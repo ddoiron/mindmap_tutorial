@@ -1,0 +1,21 @@
+# Longitudinal analyses {#longitudinal}
+
+Some _significant_ applications are demonstrated in this chapter.
+
+## Long to wide format
+For longitudinal analyses, we need to transform each dataframe (GLOBE and RECORD) from long to wide format. The following scripts does this transformation and saves the new dataframes as globe_data_long and record_data_long.
+```{r eval=FALSE}
+# GLOBE: wide to long format
+globe_data_long <- globe_data %>%
+  gather(var, value, -entity_id, -study) %>%
+  separate(var, into = c("variable", "time"), sep = ("_(?=[^_]+$)")) %>%
+  spread(variable, value)
+
+# RECORD: wide to long format
+record_data_long <- record_data %>%
+  gather(var, value, -entity_id, -study) %>%
+  separate(var, into = c("variable", "time"), sep = ("_(?=[^_]+$)")) %>%
+  spread(variable, value)
+```
+
+## Example two

@@ -14,29 +14,18 @@ description: "This is a short tutorial on how to use the MINDMAP data platform i
 
 # Tutorial overview
 
-Using harmonized data from two MINDMAP studies, participants will learn:
-* How to access the harmonized data on the Opal server via the Web RStudio interface
-* How to manipulate harmonized data in the R environment
-* How to generate study specific and pooled descriptive statistics in the RStudio environment
-* How to run study specific and pooled regression analyses in the R environment
+Using harmonized data from two MINDMAP studies, participants will learn:  
 
-The `install.packages()` command allows you to install R packages for your analyses. Run the code below to install packages needed for this tutorial
+ * How to access the harmonized data on the Opal server via the Web RStudio interface  
+ * How to manipulate harmonized data in the R environment  
+ * How to generate study specific and pooled descriptive statistics in the RStudio environment
+ * How to run study specific and pooled regression analyses in the R environment  
 
-```{r eval=FALSE}
-# Install and load required libraries for this tutorial
-install.packages("epiDisplay")
-install.packages("tidyverse")
-library(epiDisplay)
-library(tidyverse)
-```
 
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
+This tutorial assumes that users have a basic understanding of the R programming language and are familiar with RStudio. Here are a few usefull ressources to familiarize yourself with R:  
 
-To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.name/tinytex/>.
+ * Data camp course: <https://www.datacamp.com/courses/free-introduction-to-r>
+ * Base R package cheat sheet is available at: <https://www.rstudio.com/wp-content/uploads/2016/10/r-cheat-sheet-3.pdf>  
+ * other R package cheat sheets: <https://www.rstudio.com/resources/cheatsheets/>
 
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
+
