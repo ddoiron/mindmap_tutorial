@@ -1,8 +1,8 @@
 # Additional reading
-The UCLA Institute for Digital Research and Education provide usefull ressources on R (<https://stats.idre.ucla.edu/r/>), including
 
-https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/
 
-R bloggers (<https://www.r-bloggers.com>) is also a usefull ressource.
+The UCLA Institute for Digital Research and Education provide usefull ressources on R in general (<https://stats.idre.ucla.edu/r/>), as well as information and practical examples on logistic regression (<https://stats.idre.ucla.edu/r/dae/logit-regression/>), and mixed effects logistic regression (<https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/>).
 
-Finally, typing your problem/model/ with _R_ in a search engine 
+R bloggers (<https://www.r-bloggers.com>) is also a usefull ressource for R programming at different skill levels.
+
+Finally, by typing in the analysis you wish to conduct or the problem you are encoutering followed by _R_ or _[R]_ in a search engine you will most likely find usefull comment threads on sites such as _Stack Overflow_ (<https://stackoverflow.com/>) and _Cross-validated_ (<https://stats.stackexchange.com/>).

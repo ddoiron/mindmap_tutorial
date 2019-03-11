@@ -1,5 +1,5 @@
 # Cross-sectional analyses {#cross-sectional}
-In this section, simple examples of cross-sectional linear and logistic regressions for single studies and for pooled data are presented.
+In this section, simple examples of study-specific and pooled cross-sectional linear and logistic regressions are presented.
 
 ## Linear regression models
 ### Single study
@@ -9,7 +9,7 @@ The `glm()` function allows fitting a generalized linear regression model. The e
 glm_bmi_globe <- glm(phy_bmi_all_0 ~ sdc_age_0 + sdc_gender_0 + sdc_highest_edu_0 + sdc_income_0 + lsb_smk_status_0, family = gaussian, data = globe_data)
 ```
 
->Note: Using the `<-` assignment operator allows us to store the results of this analysis in an R object called *glm_bmi_globe*. 
+>*Note*: Using the `<-` assignment operator allows us to store the results of this analysis in an R object called *glm_bmi_globe*. 
 
 Applying the `summary()` function on this object allows us to see the results of our regression model. 
 ```{r eval=FALSE}
@@ -41,9 +41,8 @@ glm_sah_globe <- glm(poh_sah_poor_0 ~ sdc_age_0 + sdc_gender_0 + sdc_highest_edu
 summary(glm_sah_globe)
 ```
 
-
 ### Pooled
-As with linear regession, the _study_ variable is added to the pooled logistic regression analyses.
+As with linear regession, the *study* variable is added to the pooled logistic regression analyses.
 ```{r eval=FALSE}
 # GLM for self assessed health using pooled data
 glm_sah_pooled <- glm(poh_sah_poor_0 ~ sdc_age_0 + sdc_gender_0 + sdc_highest_edu_0 + sdc_income_0 + lsb_smk_status_0 + study, family = binomial, data = pooled_data)

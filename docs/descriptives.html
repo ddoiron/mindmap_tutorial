@@ -159,7 +159,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Section 3</span> Descriptive statistics</h1>
 <p>This section will give you a brief overview of how to generate descriptive statistics in R.</p>
 <blockquote>
-<p>Note: Throughout this tutorial, use <code>?</code> in front of a function name to retrieve help files on this function (e.g. <code>?mean</code>).</p>
+<p><em>Note</em>: Throughout this tutorial, use <code>?</code> in front of a function name to retrieve help files on this function (e.g. <code>?mean</code>).</p>
 </blockquote>
 <div id="inspect-the-dataframe" class="section level2">
 <h2><span class="header-section-number">3.1</span> Inspect the dataframe</h2>
@@ -195,7 +195,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="co"># Mean age for RECORD baseline collection wave </span>
 <span class="kw">mean</span>(record_data<span class="op">$</span>sdc_age_<span class="dv">0</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <blockquote>
-<p>Note: the <code>$</code> operator refers to a specific column relative to a specific data frame (i.e. collumn <em>sdc_age_0</em> in dataframe <em>globe_data</em>).</p>
+<p><em>Note</em>: The <code>$</code> operator refers to a specific column relative to a specific dataframe (i.e. collumn <em>sdc_age_0</em> in dataframe <em>globe_data</em>).</p>
 </blockquote>
 <p>The <code>summary()</code> command returns several desciptive statistics summaries for numeric variables. You can either run this command for a single variable or for an entire dataframe. For one variable, this function return the mean, median, 25th and 75th quartiles, minimum and maximum values. When applied to a dataframe, this command generates these statistics for all collumns in this dataframe.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Summary of the GLOBE baseline collection wave age variable</span>
@@ -216,7 +216,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="kw">prop.table</span>(<span class="kw">table</span>(globe_data<span class="op">$</span>sdc_gender_<span class="dv">0</span>))
 <span class="co"># Proporion of Males (coded as 0) and Females (coded as 1) in RECORD</span>
 <span class="kw">prop.table</span>(<span class="kw">table</span>(record_data<span class="op">$</span>sdc_gender_<span class="dv">0</span>))</code></pre></div>
-<p>Again, the <code>epiDisplay</code> package provides a useful function to summarise categorical data. Running the <code>tab1()</code> function from this package gives you the frequency and proportion for each category and generates a histogram for a variable. Missing data are also shown in tables and histograms.</p>
+<p>Again, the <code>epiDisplay</code> package provides a useful function to summarise categorical data. Running the <code>tab1()</code> function from this package gives you the frequency and proportion for each category and generates a histogram for a variable. Using <code>tab1()</code> also displays missing data in tables and histograms.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Proportion of Males/Females in GLOBE</span>
 <span class="kw">tab1</span>(globe_data<span class="op">$</span>sdc_gender_<span class="dv">0</span>)
 
@@ -234,13 +234,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="kw">boxplot</span>(record_data<span class="op">$</span>sdc_age_<span class="dv">0</span>)
 <span class="kw">hist</span>(record_data<span class="op">$</span>sdc_age_<span class="dv">0</span>)</code></pre></div>
 <blockquote>
-<p>Note: access the help files using <code>?boxplot</code> and <code>?hist</code> to learn how to format your box plot or histogram, including how to create a title for your graph, label axes, add colour, subset observations or apply breaks to numerical data.</p>
+<p><em>Note</em>: Access the help files using <code>?boxplot</code> and <code>?hist</code> to learn how to format your box plot or histogram, including how to create a title for your graph, label axes, add colour, subset observations or apply breaks to numerical data.</p>
 </blockquote>
 </div>
 <div id="pooled-statistics" class="section level2">
 <h2><span class="header-section-number">3.5</span> Pooled statistics</h2>
 <p>For pooled analyses, we will need a study indicator variable that will adjust for study effect in regression models (Section <a href="longitudinal.html#longitudinal">5</a>) . The following script creates a new collumn in each dataset called <em>study</em> and gives it a value of ‘GLOBE’ for all observations in <em>globe_data</em> and a value of ‘RECORD’ for all observations in <em>record_data</em>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a new column called study and assign values of 0 (for RECORD) and 1 (for GLOBE)</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a new column called study and assign values of GLOBE (for GLOBE study) and RECORD (for RECORD study)</span>
 globe_data[<span class="st">&#39;study&#39;</span>]=<span class="st"> &quot;GLOBE&quot;</span>
 record_data[<span class="st">&#39;study&#39;</span>]=<span class="st"> &quot;RECORD&quot;</span></code></pre></div>
 <p>Next, we use the <code>rbind()</code> command to combine <em>globe_data</em> and <em>record_data</em> into a single pooled dataset.</p>

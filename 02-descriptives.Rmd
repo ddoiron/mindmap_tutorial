@@ -1,7 +1,7 @@
 # Descriptive statistics {#descriptives}
 This section will give you a brief overview of how to generate descriptive statistics in R. 
 
->Note: Throughout this tutorial, use `?` in front of a function name to retrieve help files on this function (e.g. `?mean`).
+>*Note*: Throughout this tutorial, use `?` in front of a function name to retrieve help files on this function (e.g. `?mean`).
 
 ## Inspect the dataframe
 To see variable names of the dataframes we just created, use the `colnames()` function:
@@ -41,7 +41,7 @@ mean(globe_data$sdc_age_0, na.rm = TRUE)
 # Mean age for RECORD baseline collection wave 
 mean(record_data$sdc_age_0, na.rm = TRUE)
 ```
->Note: the `$` operator refers to a specific column relative to a specific data frame (i.e. collumn *sdc_age_0* in dataframe *globe_data*).
+>*Note*: The `$` operator refers to a specific column relative to a specific dataframe (i.e. collumn *sdc_age_0* in dataframe *globe_data*).
 
 The `summary()` command returns several desciptive statistics summaries for numeric variables. You can either run this command for a single variable or for an entire dataframe. For one variable, this function return the mean, median, 25th and 75th quartiles, minimum and maximum values. When applied to a dataframe, this command generates these statistics for all collumns in this dataframe. 
 
@@ -72,7 +72,7 @@ prop.table(table(globe_data$sdc_gender_0))
 prop.table(table(record_data$sdc_gender_0))
 ```
 
-Again, the `epiDisplay` package provides a useful function to summarise categorical data. Running the `tab1()` function from this package gives you the frequency and proportion for each category and generates a histogram for a variable. Missing data are also shown in tables and histograms.
+Again, the `epiDisplay` package provides a useful function to summarise categorical data. Running the `tab1()` function from this package gives you the frequency and proportion for each category and generates a histogram for a variable. Using `tab1()` also displays missing data in tables and histograms.
 ```{r eval=FALSE}
 # Proportion of Males/Females in GLOBE
 tab1(globe_data$sdc_gender_0)
@@ -92,13 +92,12 @@ hist(globe_data$sdc_age_0)
 boxplot(record_data$sdc_age_0)
 hist(record_data$sdc_age_0)
 ```
->Note: access the help files using `?boxplot` and `?hist` to learn how to format your box plot or histogram, including how to create a title for your graph, label axes, add colour, subset observations or apply breaks to numerical data.
-
+>*Note*: Access the help files using `?boxplot` and `?hist` to learn how to format your box plot or histogram, including how to create a title for your graph, label axes, add colour, subset observations or apply breaks to numerical data.
 
 ## Pooled statistics
 For pooled analyses, we will need a study indicator variable that will adjust for study effect in regression models (Section \@ref(longitudinal)) . The following script creates a new collumn in each dataset called _study_ and gives it a value of 'GLOBE' for all observations in *globe_data* and a value of 'RECORD' for all observations in *record_data*.
 ```{r eval=FALSE}
-# Create a new column called study and assign values of 0 (for RECORD) and 1 (for GLOBE)
+# Create a new column called study and assign values of GLOBE (for GLOBE study) and RECORD (for RECORD study)
 globe_data['study']= "GLOBE"
 record_data['study']= "RECORD"
 ```

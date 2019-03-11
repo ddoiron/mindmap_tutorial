@@ -157,7 +157,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="cross-sectional" class="section level1">
 <h1><span class="header-section-number">Section 4</span> Cross-sectional analyses</h1>
-<p>In this section, simple examples of cross-sectional linear and logistic regressions for single studies and for pooled data are presented.</p>
+<p>In this section, simple examples of study-specific and pooled cross-sectional linear and logistic regressions are presented.</p>
 <div id="linear-regression-models" class="section level2">
 <h2><span class="header-section-number">4.1</span> Linear regression models</h2>
 <div id="single-study" class="section level3">
@@ -166,7 +166,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># GLM for BMI using GLOBE study</span>
 glm_bmi_globe &lt;-<span class="st"> </span><span class="kw">glm</span>(phy_bmi_all_<span class="dv">0</span> <span class="op">~</span><span class="st"> </span>sdc_age_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_gender_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_highest_edu_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_income_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>lsb_smk_status_<span class="dv">0</span>, <span class="dt">family =</span> gaussian, <span class="dt">data =</span> globe_data)</code></pre></div>
 <blockquote>
-<p>Note: Using the <code>&lt;-</code> assignment operator allows us to store the results of this analysis in an R object called <em>glm_bmi_globe</em>.</p>
+<p><em>Note</em>: Using the <code>&lt;-</code> assignment operator allows us to store the results of this analysis in an R object called <em>glm_bmi_globe</em>.</p>
 </blockquote>
 <p>Applying the <code>summary()</code> function on this object allows us to see the results of our regression model.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># See linear regression results for GLOBE</span>
