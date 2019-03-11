@@ -8,24 +8,23 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: rstudio/bookdown-demo
-description: "This is a short tutorial on how to use the MINDMAP data platform in RStudio."
+github-repo: https://github.com/ddoiron/mindmap_tutorial
+description: "This is a short tutorial on how to use the MINDMAP data platform."
 ---
 
 # Tutorial overview
-
 Using harmonized data from two MINDMAP studies, participants will learn:  
 
- * How to access the harmonized data on the Opal server via the Web RStudio interface  
- * How to manipulate harmonized data in the R environment  
- * How to generate study specific and pooled descriptive statistics in the RStudio environment
- * How to run study specific and pooled regression analyses in the R environment  
-
+ * How to access harmonized data on the Opal server via the web RStudio interface  
+ * How to manipulate harmonized data  
+ * How to generate study specific and pooled descriptive statistics  
+ * How to run study specific and pooled regression analyses 
 
 This tutorial assumes that users have a basic understanding of the R programming language and are familiar with RStudio. Here are a few usefull ressources to familiarize yourself with R:  
 
- * Data camp course: <https://www.datacamp.com/courses/free-introduction-to-r>
- * Base R package cheat sheet is available at: <https://www.rstudio.com/wp-content/uploads/2016/10/r-cheat-sheet-3.pdf>  
- * other R package cheat sheets: <https://www.rstudio.com/resources/cheatsheets/>
+ * Data camp introductory R course: <https://www.datacamp.com/courses/free-introduction-to-r>
+ * R reference card: <https://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf>  
+ * Base R package cheat sheet: <https://www.rstudio.com/wp-content/uploads/2016/10/r-cheat-sheet-3.pdf>  
+ * Other R package cheat sheets: <https://www.rstudio.com/resources/cheatsheets/>
 
 

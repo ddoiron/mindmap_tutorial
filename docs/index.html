@@ -6,26 +6,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>MINDMAP data platform tutorial</title>
-  <meta name="description" content="This is a short tutorial on how to use the MINDMAP data platform in RStudio.">
+  <meta name="description" content="This is a short tutorial on how to use the MINDMAP data platform.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
   <meta property="og:title" content="MINDMAP data platform tutorial" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is a short tutorial on how to use the MINDMAP data platform in RStudio." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="This is a short tutorial on how to use the MINDMAP data platform." />
+  <meta name="github-repo" content="https://github.com/ddoiron/mindmap_tutorial" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="MINDMAP data platform tutorial" />
   
-  <meta name="twitter:description" content="This is a short tutorial on how to use the MINDMAP data platform in RStudio." />
+  <meta name="twitter:description" content="This is a short tutorial on how to use the MINDMAP data platform." />
   
 
 <meta name="author" content="Dany Doiron">
 
 
-<meta name="date" content="2019-03-07">
+<meta name="date" content="2019-03-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -118,14 +118,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="descriptives.html"><a href="descriptives.html#pooled-statistics"><i class="fa fa-check"></i><b>3.5</b> Pooled statistics</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="cross-sectional.html"><a href="cross-sectional.html"><i class="fa fa-check"></i><b>4</b> Cross-sectional analyses</a><ul>
-<li class="chapter" data-level="4.1" data-path="cross-sectional.html"><a href="cross-sectional.html#linear-regression"><i class="fa fa-check"></i><b>4.1</b> Linear regression</a></li>
-<li class="chapter" data-level="4.2" data-path="cross-sectional.html"><a href="cross-sectional.html#logistic-regression"><i class="fa fa-check"></i><b>4.2</b> Logistic regression</a></li>
+<li class="chapter" data-level="4.1" data-path="cross-sectional.html"><a href="cross-sectional.html#linear-regression-models"><i class="fa fa-check"></i><b>4.1</b> Linear regression models</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="cross-sectional.html"><a href="cross-sectional.html#single-study"><i class="fa fa-check"></i><b>4.1.1</b> Single study</a></li>
+<li class="chapter" data-level="4.1.2" data-path="cross-sectional.html"><a href="cross-sectional.html#pooled"><i class="fa fa-check"></i><b>4.1.2</b> Pooled</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="cross-sectional.html"><a href="cross-sectional.html#logistic-regression-models"><i class="fa fa-check"></i><b>4.2</b> Logistic regression models</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="cross-sectional.html"><a href="cross-sectional.html#single-study-1"><i class="fa fa-check"></i><b>4.2.1</b> Single study</a></li>
+<li class="chapter" data-level="4.2.2" data-path="cross-sectional.html"><a href="cross-sectional.html#pooled-1"><i class="fa fa-check"></i><b>4.2.2</b> Pooled</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="longitudinal.html"><a href="longitudinal.html"><i class="fa fa-check"></i><b>5</b> Longitudinal analyses</a><ul>
-<li class="chapter" data-level="5.1" data-path="longitudinal.html"><a href="longitudinal.html#long-to-wide-format"><i class="fa fa-check"></i><b>5.1</b> Long to wide format</a></li>
-<li class="chapter" data-level="5.2" data-path="longitudinal.html"><a href="longitudinal.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
+<li class="chapter" data-level="5.1" data-path="longitudinal.html"><a href="longitudinal.html#wide-to-long-format"><i class="fa fa-check"></i><b>5.1</b> Wide to long format</a></li>
+<li class="chapter" data-level="5.2" data-path="longitudinal.html"><a href="longitudinal.html#linear-mixed-models"><i class="fa fa-check"></i><b>5.2</b> Linear mixed models</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="longitudinal.html"><a href="longitudinal.html#continuous-outcome-normally-distributed"><i class="fa fa-check"></i><b>5.2.1</b> Continuous outcome (normally distributed)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="longitudinal.html"><a href="longitudinal.html#binary-outcome"><i class="fa fa-check"></i><b>5.2.2</b> Binary outcome</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="additional-reading.html"><a href="additional-reading.html"><i class="fa fa-check"></i><b>6</b> Additional reading</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -149,25 +158,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">MINDMAP data platform tutorial</h1>
 <p class="author"><em>Dany Doiron</em></p>
-<p class="date"><em>2019-03-07</em></p>
+<p class="date"><em>2019-03-11</em></p>
 </div>
 <div id="tutorial-overview" class="section level1">
 <h1><span class="header-section-number">Section 1</span> Tutorial overview</h1>
 <p>Using harmonized data from two MINDMAP studies, participants will learn:</p>
 <ul>
-<li>How to access the harmonized data on the Opal server via the Web RStudio interface<br />
+<li>How to access harmonized data on the Opal server via the web RStudio interface<br />
 </li>
-<li>How to manipulate harmonized data in the R environment<br />
+<li>How to manipulate harmonized data<br />
 </li>
-<li>How to generate study specific and pooled descriptive statistics in the RStudio environment</li>
-<li>How to run study specific and pooled regression analyses in the R environment</li>
+<li>How to generate study specific and pooled descriptive statistics<br />
+</li>
+<li>How to run study specific and pooled regression analyses</li>
 </ul>
 <p>This tutorial assumes that users have a basic understanding of the R programming language and are familiar with RStudio. Here are a few usefull ressources to familiarize yourself with R:</p>
 <ul>
-<li>Data camp course: <a href="https://www.datacamp.com/courses/free-introduction-to-r" class="uri">https://www.datacamp.com/courses/free-introduction-to-r</a></li>
-<li>Base R package cheat sheet is available at: <a href="https://www.rstudio.com/wp-content/uploads/2016/10/r-cheat-sheet-3.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2016/10/r-cheat-sheet-3.pdf</a><br />
+<li>Data camp introductory R course: <a href="https://www.datacamp.com/courses/free-introduction-to-r" class="uri">https://www.datacamp.com/courses/free-introduction-to-r</a></li>
+<li>R reference card: <a href="https://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf" class="uri">https://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf</a><br />
 </li>
-<li>other R package cheat sheets: <a href="https://www.rstudio.com/resources/cheatsheets/" class="uri">https://www.rstudio.com/resources/cheatsheets/</a></li>
+<li>Base R package cheat sheet: <a href="https://www.rstudio.com/wp-content/uploads/2016/10/r-cheat-sheet-3.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2016/10/r-cheat-sheet-3.pdf</a><br />
+</li>
+<li>Other R package cheat sheets: <a href="https://www.rstudio.com/resources/cheatsheets/" class="uri">https://www.rstudio.com/resources/cheatsheets/</a></li>
 </ul>
 
 </div>

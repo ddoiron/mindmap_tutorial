@@ -6,26 +6,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Section 3 Descriptive statistics | MINDMAP data platform tutorial</title>
-  <meta name="description" content="This is a short tutorial on how to use the MINDMAP data platform in RStudio.">
+  <meta name="description" content="This is a short tutorial on how to use the MINDMAP data platform.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
   <meta property="og:title" content="Section 3 Descriptive statistics | MINDMAP data platform tutorial" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is a short tutorial on how to use the MINDMAP data platform in RStudio." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="This is a short tutorial on how to use the MINDMAP data platform." />
+  <meta name="github-repo" content="https://github.com/ddoiron/mindmap_tutorial" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Section 3 Descriptive statistics | MINDMAP data platform tutorial" />
   
-  <meta name="twitter:description" content="This is a short tutorial on how to use the MINDMAP data platform in RStudio." />
+  <meta name="twitter:description" content="This is a short tutorial on how to use the MINDMAP data platform." />
   
 
 <meta name="author" content="Dany Doiron">
 
 
-<meta name="date" content="2019-03-07">
+<meta name="date" content="2019-03-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -118,14 +118,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="descriptives.html"><a href="descriptives.html#pooled-statistics"><i class="fa fa-check"></i><b>3.5</b> Pooled statistics</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="cross-sectional.html"><a href="cross-sectional.html"><i class="fa fa-check"></i><b>4</b> Cross-sectional analyses</a><ul>
-<li class="chapter" data-level="4.1" data-path="cross-sectional.html"><a href="cross-sectional.html#linear-regression"><i class="fa fa-check"></i><b>4.1</b> Linear regression</a></li>
-<li class="chapter" data-level="4.2" data-path="cross-sectional.html"><a href="cross-sectional.html#logistic-regression"><i class="fa fa-check"></i><b>4.2</b> Logistic regression</a></li>
+<li class="chapter" data-level="4.1" data-path="cross-sectional.html"><a href="cross-sectional.html#linear-regression-models"><i class="fa fa-check"></i><b>4.1</b> Linear regression models</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="cross-sectional.html"><a href="cross-sectional.html#single-study"><i class="fa fa-check"></i><b>4.1.1</b> Single study</a></li>
+<li class="chapter" data-level="4.1.2" data-path="cross-sectional.html"><a href="cross-sectional.html#pooled"><i class="fa fa-check"></i><b>4.1.2</b> Pooled</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="cross-sectional.html"><a href="cross-sectional.html#logistic-regression-models"><i class="fa fa-check"></i><b>4.2</b> Logistic regression models</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="cross-sectional.html"><a href="cross-sectional.html#single-study-1"><i class="fa fa-check"></i><b>4.2.1</b> Single study</a></li>
+<li class="chapter" data-level="4.2.2" data-path="cross-sectional.html"><a href="cross-sectional.html#pooled-1"><i class="fa fa-check"></i><b>4.2.2</b> Pooled</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="longitudinal.html"><a href="longitudinal.html"><i class="fa fa-check"></i><b>5</b> Longitudinal analyses</a><ul>
-<li class="chapter" data-level="5.1" data-path="longitudinal.html"><a href="longitudinal.html#long-to-wide-format"><i class="fa fa-check"></i><b>5.1</b> Long to wide format</a></li>
-<li class="chapter" data-level="5.2" data-path="longitudinal.html"><a href="longitudinal.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
+<li class="chapter" data-level="5.1" data-path="longitudinal.html"><a href="longitudinal.html#wide-to-long-format"><i class="fa fa-check"></i><b>5.1</b> Wide to long format</a></li>
+<li class="chapter" data-level="5.2" data-path="longitudinal.html"><a href="longitudinal.html#linear-mixed-models"><i class="fa fa-check"></i><b>5.2</b> Linear mixed models</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="longitudinal.html"><a href="longitudinal.html#continuous-outcome-normally-distributed"><i class="fa fa-check"></i><b>5.2.1</b> Continuous outcome (normally distributed)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="longitudinal.html"><a href="longitudinal.html#binary-outcome"><i class="fa fa-check"></i><b>5.2.2</b> Binary outcome</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="additional-reading.html"><a href="additional-reading.html"><i class="fa fa-check"></i><b>6</b> Additional reading</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -150,17 +159,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Section 3</span> Descriptive statistics</h1>
 <p>This section will give you a brief overview of how to generate descriptive statistics in R.</p>
 <blockquote>
-<p>Note: For this section and all subsequent section, use <code>?</code> in front of a function name to retrieve help files on this function.</p>
+<p>Note: Throughout this tutorial, use <code>?</code> in front of a function name to retrieve help files on this function (e.g. <code>?mean</code>).</p>
 </blockquote>
 <div id="inspect-the-dataframe" class="section level2">
 <h2><span class="header-section-number">3.1</span> Inspect the dataframe</h2>
-<p>To see collumn names, use the <code>colnames()</code> function:</p>
+<p>To see variable names of the dataframes we just created, use the <code>colnames()</code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># See variable names</span>
-<span class="co"># GLOBE</span>
+<span class="co"># GLOBE study</span>
 <span class="kw">colnames</span>(globe_data)
-<span class="co"># RECORD</span>
+<span class="co"># RECORD study</span>
 <span class="kw">colnames</span>(record_data)</code></pre></div>
-<p>The <code>head()</code> function gives you the variable names, types, and the 6 first lines of values in a dataset.</p>
+<p>The <code>head()</code> function gives you the variable names, variable types, and the 6 first lines of values in a dataset.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Inspect GLOBE and RECORD datasets</span>
 <span class="co"># GLOBE</span>
 <span class="kw">head</span>(globe_data)
@@ -173,23 +182,27 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li><code>mean()</code> - returns the mean of a numeric variable</li>
 <li><code>sd()</code> - returns the standard deviation of a numeric variable</li>
-<li><code>var()</code> - returns de median of a numeric variables</li>
+<li><code>var()</code> - returns de variance of a numeric variables</li>
 <li><code>min()</code> - returns de minimum of a numeric variables</li>
 <li><code>maximum()</code> - returns de maximum of a numeric variables</li>
 <li><code>median()</code>- returns de median of a numeric variables</li>
 <li><code>range()</code> - returns the range of values of a numeric variables (minimum and maximum)</li>
 <li><code>IQR()</code> - returns the interquartile range of a numeric variables</li>
 </ul>
+<p>Let’s try retreiving the mean age for each study. The <em>na.rm =</em> argument in the scripts below removes NULL values before calculating the mean.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Mean age for GLOBE baseline collection wave </span>
-<span class="kw">mean</span>(globe_data<span class="op">$</span>sdc_age_<span class="dv">0</span>)
+<span class="kw">mean</span>(globe_data<span class="op">$</span>sdc_age_<span class="dv">0</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
 <span class="co"># Mean age for RECORD baseline collection wave </span>
-<span class="kw">mean</span>(record_data<span class="op">$</span>sdc_age_<span class="dv">0</span>)</code></pre></div>
-<p>The <code>summary()</code> command returns several desciptive statistics summaries for numeric variables. you can either run this command for a single variable or for an entire dataframe. For a single variable, this function return the mean, median, 25th and 75th quartiles, minimum and maximum values. When applied to a dataframe, this command generates these stastitics for all collumns in this dataframe.</p>
+<span class="kw">mean</span>(record_data<span class="op">$</span>sdc_age_<span class="dv">0</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<blockquote>
+<p>Note: the <code>$</code> operator refers to a specific column relative to a specific data frame (i.e. collumn <em>sdc_age_0</em> in dataframe <em>globe_data</em>).</p>
+</blockquote>
+<p>The <code>summary()</code> command returns several desciptive statistics summaries for numeric variables. You can either run this command for a single variable or for an entire dataframe. For one variable, this function return the mean, median, 25th and 75th quartiles, minimum and maximum values. When applied to a dataframe, this command generates these statistics for all collumns in this dataframe.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Summary of the GLOBE baseline collection wave age variable</span>
 <span class="kw">summary</span>(globe_data<span class="op">$</span>sdc_age_<span class="dv">0</span>)
 <span class="co"># Summary of the entire GLOBE dataframe</span>
 <span class="kw">summary</span>(globe_data)</code></pre></div>
-<p>The <code>summ()</code> function from the <code>epiDisplay</code> package is also quite usefull. In addition to the number of observations, mean, median, standard deviation, minimum, maximum, and number of missing values, it also generates a plot showing the distribution of the variable.</p>
+<p>The <code>summ()</code> function from the <code>epiDisplay</code> package is also quite usefull. In addition to the number of observations, mean, median, standard deviation, minimum, and maximum, it also generates number of missing values and a plot showing the distribution of a given variable.</p>
 </div>
 <div id="categorical-variables" class="section level2">
 <h2><span class="header-section-number">3.3</span> Categorical variables</h2>
@@ -199,40 +212,41 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="co"># Number of Males/Females in RECORD</span>
 <span class="kw">table</span>(record_data<span class="op">$</span>sdc_gender_<span class="dv">0</span>)</code></pre></div>
 <p>Wrapping this function in prop.table() give the proportion of Males and Females in each study.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Proportion of Males/Females in GLOBE</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Proportion of Males (coded as 0) and Females (coded as 1) in GLOBE</span>
 <span class="kw">prop.table</span>(<span class="kw">table</span>(globe_data<span class="op">$</span>sdc_gender_<span class="dv">0</span>))
-<span class="co"># Proporion of Males/Females in RECORD</span>
+<span class="co"># Proporion of Males (coded as 0) and Females (coded as 1) in RECORD</span>
 <span class="kw">prop.table</span>(<span class="kw">table</span>(record_data<span class="op">$</span>sdc_gender_<span class="dv">0</span>))</code></pre></div>
-<p>Again, the epiDisplay package provides a useful function to summarise categorical data. Running the <code>tab1()</code> function gives you the frequency and proportion for each category and generates a histogram for a variable. Missing data are also shown in tables and histograms.</p>
+<p>Again, the <code>epiDisplay</code> package provides a useful function to summarise categorical data. Running the <code>tab1()</code> function from this package gives you the frequency and proportion for each category and generates a histogram for a variable. Missing data are also shown in tables and histograms.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Proportion of Males/Females in GLOBE</span>
 <span class="kw">tab1</span>(globe_data<span class="op">$</span>sdc_gender_<span class="dv">0</span>)
+
 <span class="co"># Proporion of Males/Females in RECORD</span>
 <span class="kw">tab1</span>(record_data<span class="op">$</span>sdc_gender_<span class="dv">0</span>)</code></pre></div>
 </div>
 <div id="graphs-and-plots" class="section level2">
 <h2><span class="header-section-number">3.4</span> Graphs and plots</h2>
-<p>R also allows you to generate graphics and plots to visualise the harmonized data. For example, you can create a box plot using the <code>boxplot()</code> function or a histogram using the <code>hist()</code> function.</p>
+<p>R also allows you to generate graphics and plots to visualise harmonized data. For example, you can create a box plot using the <code>boxplot()</code> function or a histogram using the <code>hist()</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Box plot and histogram of age at baseline for GLOBE Study</span>
 <span class="kw">boxplot</span>(globe_data<span class="op">$</span>sdc_age_<span class="dv">0</span>)
-<span class="kw">hist</span>(record_data<span class="op">$</span>sdc_age_<span class="dv">0</span>)
+<span class="kw">hist</span>(globe_data<span class="op">$</span>sdc_age_<span class="dv">0</span>)
 
 <span class="co"># Box plot and histogram of age at baseline for RECORD</span>
 <span class="kw">boxplot</span>(record_data<span class="op">$</span>sdc_age_<span class="dv">0</span>)
 <span class="kw">hist</span>(record_data<span class="op">$</span>sdc_age_<span class="dv">0</span>)</code></pre></div>
 <blockquote>
-<p>Note: access the help files using <code>?boxplot</code> and <code>?hist</code> to learn how to format your box plot or histogram, including how to create a title for your graph, label axes, add colour or subset observations or apply breaks to numerical data.</p>
+<p>Note: access the help files using <code>?boxplot</code> and <code>?hist</code> to learn how to format your box plot or histogram, including how to create a title for your graph, label axes, add colour, subset observations or apply breaks to numerical data.</p>
 </blockquote>
 </div>
 <div id="pooled-statistics" class="section level2">
 <h2><span class="header-section-number">3.5</span> Pooled statistics</h2>
-<p>For pooled analyses, we will need a study indicator variable that will adjust for study effect in regression models (Section <a href="longitudinal.html#longitudinal">5</a>) . The following script creates a new collumn in each dataset called <em>study</em> and gives it a value of ‘RECORD’ for all observations in record_data and GLOBE for all observations in globe_data.</p>
+<p>For pooled analyses, we will need a study indicator variable that will adjust for study effect in regression models (Section <a href="longitudinal.html#longitudinal">5</a>) . The following script creates a new collumn in each dataset called <em>study</em> and gives it a value of ‘GLOBE’ for all observations in <em>globe_data</em> and a value of ‘RECORD’ for all observations in <em>record_data</em>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a new column called study and assign values of 0 (for RECORD) and 1 (for GLOBE)</span>
-record_data[<span class="st">&#39;study&#39;</span>]=<span class="st"> &quot;RECORD&quot;</span>
-globe_data[<span class="st">&#39;study&#39;</span>]=<span class="st"> &quot;GLOBE&quot;</span></code></pre></div>
-<p>Next, we use the <code>rbind()</code> command to combine globe_data and record_data into a single pooled dataset.</p>
+globe_data[<span class="st">&#39;study&#39;</span>]=<span class="st"> &quot;GLOBE&quot;</span>
+record_data[<span class="st">&#39;study&#39;</span>]=<span class="st"> &quot;RECORD&quot;</span></code></pre></div>
+<p>Next, we use the <code>rbind()</code> command to combine <em>globe_data</em> and <em>record_data</em> into a single pooled dataset.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Combine dataframes into a pooled dataset using the rbind command</span>
 pooled_data &lt;-<span class="st"> </span><span class="kw">rbind</span>(globe_data, record_data)</code></pre></div>
-<p>You can play around with the functions outlined above to get descriptive statistics for the pooled dataset.</p>
+<p>You can play around with the functions outlined in this section to get descriptive statistics for the pooled dataset.</p>
 
 </div>
 </div>

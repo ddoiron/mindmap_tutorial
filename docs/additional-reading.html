@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Section 5 Longitudinal analyses | MINDMAP data platform tutorial</title>
+  <title>Section 6 Additional reading | MINDMAP data platform tutorial</title>
   <meta name="description" content="This is a short tutorial on how to use the MINDMAP data platform.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Section 5 Longitudinal analyses | MINDMAP data platform tutorial" />
+  <meta property="og:title" content="Section 6 Additional reading | MINDMAP data platform tutorial" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="https://github.com/ddoiron/mindmap_tutorial" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section 5 Longitudinal analyses | MINDMAP data platform tutorial" />
+  <meta name="twitter:title" content="Section 6 Additional reading | MINDMAP data platform tutorial" />
   
   <meta name="twitter:description" content="This is a short tutorial on how to use the MINDMAP data platform." />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="cross-sectional.html">
-<link rel="next" href="additional-reading.html">
+<link rel="prev" href="longitudinal.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -155,60 +155,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="longitudinal" class="section level1">
-<h1><span class="header-section-number">Section 5</span> Longitudinal analyses</h1>
-<p>This section provides simple examples of how to go about conducting longitudinal analyses of harmonized MINDMAP data.</p>
-<div id="wide-to-long-format" class="section level2">
-<h2><span class="header-section-number">5.1</span> Wide to long format</h2>
-<p>Before we conduct longitudinal analyses, we need to transform each dataframe (GLOBE and RECORD) from wide to long format. The following scripts does this transformation for each study and saves the new dataframes as <em>globe_data_long</em> and <em>record_data_long</em>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># GLOBE: wide to long format</span>
-globe_data_long &lt;-<span class="st"> </span>globe_data <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(var, value, <span class="op">-</span>entity_id, <span class="op">-</span>study) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(var, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;time&quot;</span>), <span class="dt">sep =</span> (<span class="st">&quot;_(?=[^_]+$)&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">spread</span>(variable, value)
+<div id="additional-reading" class="section level1">
+<h1><span class="header-section-number">Section 6</span> Additional reading</h1>
+<p>The UCLA Institute for Digital Research and Education provide usefull ressources on R (<a href="https://stats.idre.ucla.edu/r/" class="uri">https://stats.idre.ucla.edu/r/</a>), including</p>
+<p><a href="https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/" class="uri">https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/</a></p>
+<p>R bloggers (<a href="https://www.r-bloggers.com" class="uri">https://www.r-bloggers.com</a>) is also a usefull ressource.</p>
+<p>Finally, typing your problem/model/ with <em>R</em> in a search engine</p>
 
-<span class="co"># RECORD: wide to long format</span>
-record_data_long &lt;-<span class="st"> </span>record_data <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(var, value, <span class="op">-</span>entity_id, <span class="op">-</span>study) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(var, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;time&quot;</span>), <span class="dt">sep =</span> (<span class="st">&quot;_(?=[^_]+$)&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">spread</span>(variable, value)</code></pre></div>
-<p>Next, we combine GLOBE and RECORD long format dataframes into a pooled dataframe:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Pooled data: long format</span>
-pooled_data_long &lt;-<span class="st"> </span><span class="kw">rbind</span>(globe_data_long, record_data_long)</code></pre></div>
-<blockquote>
-<p>Note: in the <em>long format</em> dataframes the *_0* and *_1* suffixes, indicating baseline and follow up data collections are removed from the datasets.</p>
-</blockquote>
-</div>
-<div id="linear-mixed-models" class="section level2">
-<h2><span class="header-section-number">5.2</span> Linear mixed models</h2>
-<div id="continuous-outcome-normally-distributed" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Continuous outcome (normally distributed)</h3>
-<p>The <code>lmer()</code> function from the <code>lme4</code> allows us to fit linear mixed-effect models. In the example below, data for two time points (baseline and follow up 1) of the GLOBE study are fitted with body mass index as the outcome and age, sex, household income and smoking status as predictor variables.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lmm_bmi_globe &lt;-<span class="st"> </span><span class="kw">lmer</span>(phy_bmi_all <span class="op">~</span><span class="st"> </span>sdc_age <span class="op">+</span><span class="st"> </span>sdc_gender <span class="op">+</span><span class="st"> </span>sdc_income <span class="op">+</span><span class="st"> </span>lsb_smk_status <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>entity_id), <span class="dt">data =</span> globe_data_long)
-
-<span class="kw">summary</span>(lmm_bmi_globe)</code></pre></div>
-<p>Below, the same model is fitted to the pooled dataset adding the study indicator variable to the formula.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lmm_bmi_pooled &lt;-<span class="st"> </span><span class="kw">lmer</span>(phy_bmi_all <span class="op">~</span><span class="st"> </span>sdc_age <span class="op">+</span><span class="st"> </span>sdc_gender <span class="op">+</span><span class="st"> </span>sdc_income <span class="op">+</span><span class="st"> </span>lsb_smk_status <span class="op">+</span><span class="st"> </span>study <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>entity_id), <span class="dt">data =</span> pooled_data_long)
-
-<span class="kw">summary</span>(lmm_bmi_pooled)</code></pre></div>
-</div>
-<div id="binary-outcome" class="section level3">
-<h3><span class="header-section-number">5.2.2</span> Binary outcome</h3>
-<p>For binary outcomes, the <code>glmer()</code> function is used to fit a generalized linear mixed-effects model.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lmm_bmi_pooled &lt;-<span class="st"> </span><span class="kw">lmer</span>(phy_bmi_all <span class="op">~</span><span class="st"> </span>sdc_age <span class="op">+</span><span class="st"> </span>sdc_gender <span class="op">+</span><span class="st"> </span>sdc_income <span class="op">+</span><span class="st"> </span>lsb_smk_status <span class="op">+</span><span class="st"> </span>study <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>entity_id), <span class="dt">data =</span> pooled_data_long)
-
-<span class="kw">summary</span>(lmm_bmi_pooled)</code></pre></div>
-
-</div>
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="cross-sectional.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="additional-reading.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="longitudinal.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -238,7 +199,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-longitudinal.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-summary.Rmd",
 "text": "Edit"
 },
 "history": {

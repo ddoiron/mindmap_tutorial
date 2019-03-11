@@ -1,19 +1,19 @@
 # Descriptive statistics {#descriptives}
 This section will give you a brief overview of how to generate descriptive statistics in R. 
 
->Note: For this section and all subsequent section, use `?` in front of a function name to retrieve help files on this function.
+>Note: Throughout this tutorial, use `?` in front of a function name to retrieve help files on this function (e.g. `?mean`).
 
 ## Inspect the dataframe
-To see collumn names, use the `colnames()` function:
+To see variable names of the dataframes we just created, use the `colnames()` function:
 ```{r eval=FALSE}
 # See variable names
-# GLOBE
+# GLOBE study
 colnames(globe_data)
-# RECORD
+# RECORD study
 colnames(record_data)
 ```
 
-The `head()` function gives you the variable names, types, and the 6 first lines of values in a dataset.
+The `head()` function gives you the variable names, variable types, and the 6 first lines of values in a dataset.
 ```{r eval=FALSE}
 # Inspect GLOBE and RECORD datasets
 # GLOBE
@@ -27,21 +27,23 @@ Basic R functions for computing descriptive statistics include:
  
  * `mean()` - returns the mean of a numeric variable
  * `sd()` - returns the standard deviation of a numeric variable
- * `var()` - returns de median of a numeric variables
+ * `var()` - returns de variance of a numeric variables
  * `min()` - returns de minimum of a numeric variables
  * `maximum()` - returns de maximum of a numeric variables
  * `median()`- returns de median of a numeric variables
  * `range()` - returns the range of values of a numeric variables (minimum and maximum)
  * `IQR()` - returns the interquartile range of a numeric variables
  
+Let's try retreiving the mean age for each study. The _na.rm =_ argument in the scripts below removes NULL values before calculating the mean. 
 ```{r eval=FALSE}
 # Mean age for GLOBE baseline collection wave 
-mean(globe_data$sdc_age_0)
+mean(globe_data$sdc_age_0, na.rm = TRUE)
 # Mean age for RECORD baseline collection wave 
-mean(record_data$sdc_age_0)
+mean(record_data$sdc_age_0, na.rm = TRUE)
 ```
- 
-The `summary()` command returns several desciptive statistics summaries for numeric variables. you can either run this command for a single variable or for an entire dataframe. For a single variable, this function return the mean, median, 25th and 75th quartiles, minimum and maximum values. When applied to a dataframe, this command generates these stastitics for all collumns in this dataframe. 
+>Note: the `$` operator refers to a specific column relative to a specific data frame (i.e. collumn *sdc_age_0* in dataframe *globe_data*).
+
+The `summary()` command returns several desciptive statistics summaries for numeric variables. You can either run this command for a single variable or for an entire dataframe. For one variable, this function return the mean, median, 25th and 75th quartiles, minimum and maximum values. When applied to a dataframe, this command generates these statistics for all collumns in this dataframe. 
 
 ```{r eval=FALSE}
 # Summary of the GLOBE baseline collection wave age variable
@@ -50,7 +52,7 @@ summary(globe_data$sdc_age_0)
 summary(globe_data)
 ```
 
-The `summ()` function from the `epiDisplay` package is also quite usefull. In addition to the number of observations, mean, median, standard deviation, minimum, maximum, and number of missing values, it also generates a plot showing the distribution of the variable. 
+The `summ()` function from the `epiDisplay` package is also quite usefull. In addition to the number of observations, mean, median, standard deviation, minimum, and maximum, it also generates number of missing values and a plot showing the distribution of a given variable. 
 
 
 ## Categorical variables
@@ -64,46 +66,47 @@ table(record_data$sdc_gender_0)
 
 Wrapping this function in prop.table() give the proportion of Males and Females in each study.
 ```{r eval=FALSE}
-# Proportion of Males/Females in GLOBE
+# Proportion of Males (coded as 0) and Females (coded as 1) in GLOBE
 prop.table(table(globe_data$sdc_gender_0))
-# Proporion of Males/Females in RECORD
+# Proporion of Males (coded as 0) and Females (coded as 1) in RECORD
 prop.table(table(record_data$sdc_gender_0))
 ```
 
-Again, the epiDisplay package provides a useful function to summarise categorical data. Running the `tab1()` function gives you the frequency and proportion for each category and generates a histogram for a variable. Missing data are also shown in tables and histograms.
+Again, the `epiDisplay` package provides a useful function to summarise categorical data. Running the `tab1()` function from this package gives you the frequency and proportion for each category and generates a histogram for a variable. Missing data are also shown in tables and histograms.
 ```{r eval=FALSE}
 # Proportion of Males/Females in GLOBE
 tab1(globe_data$sdc_gender_0)
+
 # Proporion of Males/Females in RECORD
 tab1(record_data$sdc_gender_0)
 ```
 
 ## Graphs and plots
-R also allows you to generate graphics and plots to visualise the harmonized data. For example, you can create a box plot using the `boxplot()` function or a histogram using the `hist()` function.
+R also allows you to generate graphics and plots to visualise harmonized data. For example, you can create a box plot using the `boxplot()` function or a histogram using the `hist()` function.
 ```{r eval=FALSE}
 # Box plot and histogram of age at baseline for GLOBE Study
 boxplot(globe_data$sdc_age_0)
-hist(record_data$sdc_age_0)
+hist(globe_data$sdc_age_0)
 
 # Box plot and histogram of age at baseline for RECORD
 boxplot(record_data$sdc_age_0)
 hist(record_data$sdc_age_0)
 ```
->Note: access the help files using `?boxplot` and `?hist` to learn how to format your box plot or histogram, including how to create a title for your graph, label axes, add colour or subset observations or apply breaks to numerical data.
+>Note: access the help files using `?boxplot` and `?hist` to learn how to format your box plot or histogram, including how to create a title for your graph, label axes, add colour, subset observations or apply breaks to numerical data.
 
 
 ## Pooled statistics
-For pooled analyses, we will need  a study indicator variable that will adjust for study effect in regression models (Section \@ref(longitudinal)) . The following script creates a new collumn in each dataset called _study_ and gives it a value of 'RECORD' for all observations in record_data and GLOBE for all observations in globe_data.
+For pooled analyses, we will need a study indicator variable that will adjust for study effect in regression models (Section \@ref(longitudinal)) . The following script creates a new collumn in each dataset called _study_ and gives it a value of 'GLOBE' for all observations in *globe_data* and a value of 'RECORD' for all observations in *record_data*.
 ```{r eval=FALSE}
 # Create a new column called study and assign values of 0 (for RECORD) and 1 (for GLOBE)
-record_data['study']= "RECORD"
 globe_data['study']= "GLOBE"
+record_data['study']= "RECORD"
 ```
 
-Next, we use the `rbind()` command to combine globe_data and record_data into a single pooled dataset.
+Next, we use the `rbind()` command to combine *globe_data* and *record_data* into a single pooled dataset.
 ```{r eval=FALSE}
 # Combine dataframes into a pooled dataset using the rbind command
 pooled_data <- rbind(globe_data, record_data)
 ```
 
-You can play around with the functions outlined above to get descriptive statistics for the pooled dataset.
+You can play around with the functions outlined in this section to get descriptive statistics for the pooled dataset.

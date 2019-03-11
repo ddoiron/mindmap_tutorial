@@ -1,21 +1,53 @@
 # Cross-sectional analyses {#cross-sectional}
 In this section, simple examples of cross-sectional linear and logistic regressions for single studies and for pooled data are presented.
 
-## Linear regression
-The `glm()` function allows fitting a generalized linear regression model. The example below is a corss-sectional (baseline assessment data) linear regression with body mass index as the outcome and age, sex, education level, household income and smoking status as predictor variables. 
+## Linear regression models
+### Single study
+The `glm()` function allows fitting a generalized linear regression model. The example below is a cross-sectional (GLOBE study baseline data) linear regression with body mass index (continuous) as the outcome and age, sex, education level, household income and smoking status as predictor variables. As with all subsequent regression models presented in this tutorial, the outcome is seperated by the *~* operator and each independent variable is seperated by a *+*. 
 ```{r eval=FALSE}
 # GLM for BMI using GLOBE study
-glm_bmi <- glm(phy_bmi_all_0 ~ sdc_age_0 + sdc_gender_0 + sdc_highest_edu_0 + sdc_income_0 + lsb_smk_status_0, family = gaussian, data = globe_data)
+glm_bmi_globe <- glm(phy_bmi_all_0 ~ sdc_age_0 + sdc_gender_0 + sdc_highest_edu_0 + sdc_income_0 + lsb_smk_status_0, family = gaussian, data = globe_data)
 ```
 
-Using the `<-` assignment operator allows us to store the results of this analysis in an R object called glm_bmi. Applying the `summary()` function on this object allows us to see the results. 
+>Note: Using the `<-` assignment operator allows us to store the results of this analysis in an R object called *glm_bmi_globe*. 
 
+Applying the `summary()` function on this object allows us to see the results of our regression model. 
 ```{r eval=FALSE}
-# See linear regression results
-summary(glm_bmi)
+# See linear regression results for GLOBE
+summary(glm_bmi_globe)
 ```
 
-The `glm()` function can also be applied to a categorical outcome by specifi
+### Pooled
+For a pooled analysis, we use the same function, but add the study indicator (i.e. the *study* variable) in our model to adjust for study effect. Of course the *pooled_data* dataframe needs to be specified in the _data =_ argument.
+```{r eval=FALSE}
+# GLM for BMI using pooled data
+glm_bmi_pooled <- glm(phy_bmi_all_0 ~ sdc_age_0 + sdc_gender_0 + sdc_highest_edu_0 + sdc_income_0 + lsb_smk_status_0 + study, family = gaussian, data = pooled_data)
+```
 
-## Logistic regression
-For 
+Again, we apply the `summary()` function on this object to see the results of our regression model. 
+```{r eval=FALSE}
+# See linear regression results for pooled data
+summary(glm_bmi_pooled)
+```
+
+## Logistic regression models
+### Single study
+The `glm()` function can also be applied to a categorical outcome by specifying _binomial_ in the _family =_ argument. The example below is a cross-sectional (GLOBE study baseline data) logistic regression with self assessed health (0 = _Poor health_, 1 = _Non poor health_) as the outcome and age, sex, education level, household income and smoking status as predictor variables. 
+```{r eval=FALSE}
+# GLM for self assessed health using GLOBE study
+glm_sah_globe <- glm(poh_sah_poor_0 ~ sdc_age_0 + sdc_gender_0 + sdc_highest_edu_0 + sdc_income_0 + lsb_smk_status_0, family = binomial, data = globe_data)
+
+# See model results
+summary(glm_sah_globe)
+```
+
+
+### Pooled
+As with linear regession, the _study_ variable is added to the pooled logistic regression analyses.
+```{r eval=FALSE}
+# GLM for self assessed health using pooled data
+glm_sah_pooled <- glm(poh_sah_poor_0 ~ sdc_age_0 + sdc_gender_0 + sdc_highest_edu_0 + sdc_income_0 + lsb_smk_status_0 + study, family = binomial, data = pooled_data)
+
+# See model resutls
+summary(glm_sah_pooled)
+```

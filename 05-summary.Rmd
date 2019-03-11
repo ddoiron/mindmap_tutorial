@@ -1,2 +1,8 @@
-# Final Words
+# Additional reading
+The UCLA Institute for Digital Research and Education provide usefull ressources on R (<https://stats.idre.ucla.edu/r/>), including
 
+https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/
+
+R bloggers (<https://www.r-bloggers.com>) is also a usefull ressource.
+
+Finally, typing your problem/model/ with _R_ in a search engine 

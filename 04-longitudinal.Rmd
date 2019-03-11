@@ -1,9 +1,8 @@
 # Longitudinal analyses {#longitudinal}
+This section provides simple examples of how to go about conducting longitudinal analyses of harmonized MINDMAP data.
 
-Some _significant_ applications are demonstrated in this chapter.
-
-## Long to wide format
-For longitudinal analyses, we need to transform each dataframe (GLOBE and RECORD) from long to wide format. The following scripts does this transformation and saves the new dataframes as globe_data_long and record_data_long.
+## Wide to long format
+Before we conduct longitudinal analyses, we need to transform each dataframe (GLOBE and RECORD) from wide to long format. The following scripts does this transformation for each study and saves the new dataframes as *globe_data_long* and *record_data_long*.
 ```{r eval=FALSE}
 # GLOBE: wide to long format
 globe_data_long <- globe_data %>%
@@ -18,4 +17,35 @@ record_data_long <- record_data %>%
   spread(variable, value)
 ```
 
-## Example two
+Next, we combine GLOBE and RECORD long format dataframes into a pooled dataframe:
+```{r eval=FALSE}
+# Pooled data: long format
+pooled_data_long <- rbind(globe_data_long, record_data_long)
+```
+>Note: in the *long format* dataframes the *_0* and *_1* suffixes, indicating baseline and follow up data collections are removed from the datasets.
+
+## Linear mixed models
+### Continuous outcome (normally distributed)
+The `lmer()` function from the `lme4` allows us to fit linear mixed-effect models. In the example below, data for two time points (baseline and follow up 1) of the GLOBE study are fitted with body mass index as the outcome and age, sex, household income and smoking status as predictor variables. 
+```{r eval=FALSE}
+lmm_bmi_globe <- lmer(phy_bmi_all ~ sdc_age + sdc_gender + sdc_income + lsb_smk_status + (1 | entity_id), data = globe_data_long)
+
+summary(lmm_bmi_globe)
+```
+
+Below, the same model is fitted to the pooled dataset adding the study indicator variable to the formula.
+```{r eval=FALSE}
+lmm_bmi_pooled <- lmer(phy_bmi_all ~ sdc_age + sdc_gender + sdc_income + lsb_smk_status + study + (1 | entity_id), data = pooled_data_long)
+
+summary(lmm_bmi_pooled)
+```
+
+### Binary outcome
+
+For binary outcomes, the `glmer()` function is used to fit a generalized linear mixed-effects model.
+```{r eval=FALSE}
+lmm_bmi_pooled <- lmer(phy_bmi_all ~ sdc_age + sdc_gender + sdc_income + lsb_smk_status + study + (1 | entity_id), data = pooled_data_long)
+
+summary(lmm_bmi_pooled)
+```
+

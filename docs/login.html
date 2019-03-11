@@ -6,26 +6,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Section 2 Project set up | MINDMAP data platform tutorial</title>
-  <meta name="description" content="This is a short tutorial on how to use the MINDMAP data platform in RStudio.">
+  <meta name="description" content="This is a short tutorial on how to use the MINDMAP data platform.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
   <meta property="og:title" content="Section 2 Project set up | MINDMAP data platform tutorial" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is a short tutorial on how to use the MINDMAP data platform in RStudio." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="This is a short tutorial on how to use the MINDMAP data platform." />
+  <meta name="github-repo" content="https://github.com/ddoiron/mindmap_tutorial" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Section 2 Project set up | MINDMAP data platform tutorial" />
   
-  <meta name="twitter:description" content="This is a short tutorial on how to use the MINDMAP data platform in RStudio." />
+  <meta name="twitter:description" content="This is a short tutorial on how to use the MINDMAP data platform." />
   
 
 <meta name="author" content="Dany Doiron">
 
 
-<meta name="date" content="2019-03-07">
+<meta name="date" content="2019-03-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -118,14 +118,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="descriptives.html"><a href="descriptives.html#pooled-statistics"><i class="fa fa-check"></i><b>3.5</b> Pooled statistics</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="cross-sectional.html"><a href="cross-sectional.html"><i class="fa fa-check"></i><b>4</b> Cross-sectional analyses</a><ul>
-<li class="chapter" data-level="4.1" data-path="cross-sectional.html"><a href="cross-sectional.html#linear-regression"><i class="fa fa-check"></i><b>4.1</b> Linear regression</a></li>
-<li class="chapter" data-level="4.2" data-path="cross-sectional.html"><a href="cross-sectional.html#logistic-regression"><i class="fa fa-check"></i><b>4.2</b> Logistic regression</a></li>
+<li class="chapter" data-level="4.1" data-path="cross-sectional.html"><a href="cross-sectional.html#linear-regression-models"><i class="fa fa-check"></i><b>4.1</b> Linear regression models</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="cross-sectional.html"><a href="cross-sectional.html#single-study"><i class="fa fa-check"></i><b>4.1.1</b> Single study</a></li>
+<li class="chapter" data-level="4.1.2" data-path="cross-sectional.html"><a href="cross-sectional.html#pooled"><i class="fa fa-check"></i><b>4.1.2</b> Pooled</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="cross-sectional.html"><a href="cross-sectional.html#logistic-regression-models"><i class="fa fa-check"></i><b>4.2</b> Logistic regression models</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="cross-sectional.html"><a href="cross-sectional.html#single-study-1"><i class="fa fa-check"></i><b>4.2.1</b> Single study</a></li>
+<li class="chapter" data-level="4.2.2" data-path="cross-sectional.html"><a href="cross-sectional.html#pooled-1"><i class="fa fa-check"></i><b>4.2.2</b> Pooled</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="longitudinal.html"><a href="longitudinal.html"><i class="fa fa-check"></i><b>5</b> Longitudinal analyses</a><ul>
-<li class="chapter" data-level="5.1" data-path="longitudinal.html"><a href="longitudinal.html#long-to-wide-format"><i class="fa fa-check"></i><b>5.1</b> Long to wide format</a></li>
-<li class="chapter" data-level="5.2" data-path="longitudinal.html"><a href="longitudinal.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
+<li class="chapter" data-level="5.1" data-path="longitudinal.html"><a href="longitudinal.html#wide-to-long-format"><i class="fa fa-check"></i><b>5.1</b> Wide to long format</a></li>
+<li class="chapter" data-level="5.2" data-path="longitudinal.html"><a href="longitudinal.html#linear-mixed-models"><i class="fa fa-check"></i><b>5.2</b> Linear mixed models</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="longitudinal.html"><a href="longitudinal.html#continuous-outcome-normally-distributed"><i class="fa fa-check"></i><b>5.2.1</b> Continuous outcome (normally distributed)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="longitudinal.html"><a href="longitudinal.html#binary-outcome"><i class="fa fa-check"></i><b>5.2.2</b> Binary outcome</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="additional-reading.html"><a href="additional-reading.html"><i class="fa fa-check"></i><b>6</b> Additional reading</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -161,7 +170,7 @@ Figure 2.1: Login to the web RStudio with username and password provided for the
 </div>
 <div id="install-and-load-packages" class="section level2">
 <h2><span class="header-section-number">2.2</span> Install and load packages</h2>
-<p>Next, we need load R packages we are going to use in this tutorial. To do so, execute the following lines in your R session using the library() command. To execute a script from an R file, place your cursor on the line and Type Ctrl-R.</p>
+<p>Next, we need load R packages we are going to use in this tutorial using the <code>library()</code> command. To do so, execute the following lines in your R session. To execute a script from an R file, place your cursor on the line and Type Ctrl-R. You will notice that the script is then executed in the bottom left <em>Console</em> window.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load required libraries for this tutorial</span>
 <span class="kw">library</span>(opal)
 <span class="kw">library</span>(tidyverse)
@@ -169,30 +178,32 @@ Figure 2.1: Login to the web RStudio with username and password provided for the
 <span class="kw">library</span>(lme4)
 <span class="kw">library</span>(car)</code></pre></div>
 <blockquote>
-<p>Note: we have pre-installed required R packages in your R environment. For your own analyses, you may need to install additional packages at a later date. This is done by using the <code>install.packages()</code> command and writing the name of the package in quotations (e.g. install.packages(“tidyverse”)).</p>
+<p>Note: We have pre-installed required R packages in your R environment. For your own analyses, you may need to install additional packages at a later date. This is done by using the <code>install.packages()</code> command and writing the name of the package in quotations (e.g. install.packages(“tidyverse”)).</p>
 </blockquote>
 </div>
 <div id="log-in-to-opal" class="section level2">
 <h2><span class="header-section-number">2.3</span> Log in to Opal</h2>
-<p>In order to access harmonized data from RStudio, we need to log in to the Opal server, which hosts the harmonized data for the RECORD and GLOBE studies. To do so, execute the following line of script in this file:</p>
+<p>In order to access harmonized data from RStudio, we need to log in to the Opal server, which hosts the harmonized data for the GLOBE and RECORD studies. To do so, execute the following line of script:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create an object with your Opal login information (password and username) - these are hidden in your .Rprofile file.</span>
 erasmus_opal &lt;-<span class="st"> </span><span class="kw">opal.login</span>()</code></pre></div>
-<p>This saves your Opal username and password in a object called <em>erasmus_opal</em>.</p>
-<p>Next, assign the data you want to use in your R session. You can either assign an entire table, or a subset of variables from a table using the variables argument:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Assign RECORD data</span>
-<span class="kw">opal.assign.table.tibble</span>(erasmus_opal, <span class="st">&#39;record_data&#39;</span>, <span class="st">&#39;WORKSHOP.DS_RECORD&#39;</span>)
-<span class="co">#opal.assign.table.tibble(erasmus_opal, &#39;record_data&#39;, &#39;WORKSHOP.DS_RECORD&#39;, variables = list(&quot;sdc_age_0&quot;,&quot;sdc_gender_0&quot;,&quot;sdc_highest_edu_0&quot;))</span>
-
-<span class="co">#Assign GLOBE data</span>
+<p>This saves your Opal username and password in a object called <em>erasmus_opal</em> and appears under the <em>Environment</em> tab in the upper right corner of your RStudio interface.</p>
+<p>Next, assign the data you want to use in your R session. You can either assign an entire table, or a subset of variables from a table using the <em>variables =</em> argument (see example shown in the commented section of the script):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Assign GLOBE data</span>
 <span class="kw">opal.assign.table.tibble</span>(erasmus_opal, <span class="st">&#39;globe_data&#39;</span>, <span class="st">&#39;WORKSHOP.DS_GLOBE&#39;</span>)
-<span class="co">#opal.assign.table.tibble(erasmus_opal, &#39;globe_data&#39;, &#39;WORKSHOP.DS_GLOBE&#39;,variables = list(&quot;sdc_age_0&quot;,&quot;sdc_gender_0&quot;,&quot;sdc_highest_edu_0&quot;,&quot;sdc_income_0&quot;,&quot;sdc_livstat_0&quot;,&quot;sdc_retire_0&quot;,&quot;phy_bmi_all_0&quot;,&quot;poh_sah_good_0&quot;,&quot;poh_sah_poor_0&quot;,&quot;lsb_smk_status_0&quot;))</span></code></pre></div>
-<p>Last, create dataframes in RStudio for your analyses using the following scripts:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Dataframe for RECORD data</span>
-record_data &lt;-<span class="st"> </span><span class="kw">opal.execute</span>(erasmus_opal,<span class="st">&#39;record_data&#39;</span>)
+<span class="co">#opal.assign.table.tibble(erasmus_opal, &#39;globe_data&#39;, &#39;WORKSHOP.DS_GLOBE&#39;,variables = list(&quot;sdc_age_0&quot;,&quot;sdc_gender_0&quot;,&quot;sdc_highest_edu_0&quot;,&quot;sdc_income_0&quot;,&quot;sdc_livstat_0&quot;,&quot;sdc_retire_0&quot;,&quot;phy_bmi_all_0&quot;,&quot;poh_sah_good_0&quot;,&quot;poh_sah_poor_0&quot;,&quot;lsb_smk_status_0&quot;))</span>
 
-<span class="co">#Dataframe for GLOBE data</span>
-globe_data &lt;-<span class="st"> </span><span class="kw">opal.execute</span>(erasmus_opal,<span class="st">&#39;globe_data&#39;</span>)</code></pre></div>
-<p>The <code>&lt;-</code> is an assignment operator in R. It creates an object with what is written to its right. You’ll notice that when you run the two lines above, dataframes appear in the upper right hand corner window under the <em>Environment</em> tab, indicating the name of the dataframe, the number of observations and number of variables.</p>
+<span class="co"># Assign RECORD data</span>
+<span class="kw">opal.assign.table.tibble</span>(erasmus_opal, <span class="st">&#39;record_data&#39;</span>, <span class="st">&#39;WORKSHOP.DS_RECORD&#39;</span>)
+<span class="co">#opal.assign.table.tibble(erasmus_opal, &#39;record_data&#39;, &#39;WORKSHOP.DS_RECORD&#39;, variables = list(&quot;sdc_age_0&quot;,&quot;sdc_gender_0&quot;,&quot;sdc_highest_edu_0&quot;))</span></code></pre></div>
+<p>Last, create dataframes in RStudio for your analyses using the following scripts:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Dataframe for GLOBE data</span>
+globe_data &lt;-<span class="st"> </span><span class="kw">opal.execute</span>(erasmus_opal,<span class="st">&#39;globe_data&#39;</span>)
+
+<span class="co"># Dataframe for RECORD data</span>
+record_data &lt;-<span class="st"> </span><span class="kw">opal.execute</span>(erasmus_opal,<span class="st">&#39;record_data&#39;</span>)</code></pre></div>
+<blockquote>
+<p>Note: The <code>&lt;-</code> is an assignment operator in R. It creates an object with what is written to its right. You’ll notice that when you run the two lines above, dataframes called <em>globe_data</em> and <em>record_data</em> appear in the upper right hand corner window under the <em>Environment</em> tab, indicating the name of the dataframe, the number of observations and number of variables.</p>
+</blockquote>
 
 </div>
 </div>

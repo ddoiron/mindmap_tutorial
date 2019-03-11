@@ -6,26 +6,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Section 4 Cross-sectional analyses | MINDMAP data platform tutorial</title>
-  <meta name="description" content="This is a short tutorial on how to use the MINDMAP data platform in RStudio.">
+  <meta name="description" content="This is a short tutorial on how to use the MINDMAP data platform.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
   <meta property="og:title" content="Section 4 Cross-sectional analyses | MINDMAP data platform tutorial" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is a short tutorial on how to use the MINDMAP data platform in RStudio." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="This is a short tutorial on how to use the MINDMAP data platform." />
+  <meta name="github-repo" content="https://github.com/ddoiron/mindmap_tutorial" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Section 4 Cross-sectional analyses | MINDMAP data platform tutorial" />
   
-  <meta name="twitter:description" content="This is a short tutorial on how to use the MINDMAP data platform in RStudio." />
+  <meta name="twitter:description" content="This is a short tutorial on how to use the MINDMAP data platform." />
   
 
 <meta name="author" content="Dany Doiron">
 
 
-<meta name="date" content="2019-03-07">
+<meta name="date" content="2019-03-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -118,14 +118,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="descriptives.html"><a href="descriptives.html#pooled-statistics"><i class="fa fa-check"></i><b>3.5</b> Pooled statistics</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="cross-sectional.html"><a href="cross-sectional.html"><i class="fa fa-check"></i><b>4</b> Cross-sectional analyses</a><ul>
-<li class="chapter" data-level="4.1" data-path="cross-sectional.html"><a href="cross-sectional.html#linear-regression"><i class="fa fa-check"></i><b>4.1</b> Linear regression</a></li>
-<li class="chapter" data-level="4.2" data-path="cross-sectional.html"><a href="cross-sectional.html#logistic-regression"><i class="fa fa-check"></i><b>4.2</b> Logistic regression</a></li>
+<li class="chapter" data-level="4.1" data-path="cross-sectional.html"><a href="cross-sectional.html#linear-regression-models"><i class="fa fa-check"></i><b>4.1</b> Linear regression models</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="cross-sectional.html"><a href="cross-sectional.html#single-study"><i class="fa fa-check"></i><b>4.1.1</b> Single study</a></li>
+<li class="chapter" data-level="4.1.2" data-path="cross-sectional.html"><a href="cross-sectional.html#pooled"><i class="fa fa-check"></i><b>4.1.2</b> Pooled</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="cross-sectional.html"><a href="cross-sectional.html#logistic-regression-models"><i class="fa fa-check"></i><b>4.2</b> Logistic regression models</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="cross-sectional.html"><a href="cross-sectional.html#single-study-1"><i class="fa fa-check"></i><b>4.2.1</b> Single study</a></li>
+<li class="chapter" data-level="4.2.2" data-path="cross-sectional.html"><a href="cross-sectional.html#pooled-1"><i class="fa fa-check"></i><b>4.2.2</b> Pooled</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="longitudinal.html"><a href="longitudinal.html"><i class="fa fa-check"></i><b>5</b> Longitudinal analyses</a><ul>
-<li class="chapter" data-level="5.1" data-path="longitudinal.html"><a href="longitudinal.html#long-to-wide-format"><i class="fa fa-check"></i><b>5.1</b> Long to wide format</a></li>
-<li class="chapter" data-level="5.2" data-path="longitudinal.html"><a href="longitudinal.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
+<li class="chapter" data-level="5.1" data-path="longitudinal.html"><a href="longitudinal.html#wide-to-long-format"><i class="fa fa-check"></i><b>5.1</b> Wide to long format</a></li>
+<li class="chapter" data-level="5.2" data-path="longitudinal.html"><a href="longitudinal.html#linear-mixed-models"><i class="fa fa-check"></i><b>5.2</b> Linear mixed models</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="longitudinal.html"><a href="longitudinal.html#continuous-outcome-normally-distributed"><i class="fa fa-check"></i><b>5.2.1</b> Continuous outcome (normally distributed)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="longitudinal.html"><a href="longitudinal.html#binary-outcome"><i class="fa fa-check"></i><b>5.2.2</b> Binary outcome</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="additional-reading.html"><a href="additional-reading.html"><i class="fa fa-check"></i><b>6</b> Additional reading</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -149,20 +158,51 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="cross-sectional" class="section level1">
 <h1><span class="header-section-number">Section 4</span> Cross-sectional analyses</h1>
 <p>In this section, simple examples of cross-sectional linear and logistic regressions for single studies and for pooled data are presented.</p>
-<div id="linear-regression" class="section level2">
-<h2><span class="header-section-number">4.1</span> Linear regression</h2>
-<p>The <code>glm()</code> function allows fitting a generalized linear regression model. The example below is a corss-sectional (baseline assessment data) linear regression with body mass index as the outcome and age, sex, education level, household income and smoking status as predictor variables.</p>
+<div id="linear-regression-models" class="section level2">
+<h2><span class="header-section-number">4.1</span> Linear regression models</h2>
+<div id="single-study" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Single study</h3>
+<p>The <code>glm()</code> function allows fitting a generalized linear regression model. The example below is a cross-sectional (GLOBE study baseline data) linear regression with body mass index (continuous) as the outcome and age, sex, education level, household income and smoking status as predictor variables. As with all subsequent regression models presented in this tutorial, the outcome is seperated by the <em>~</em> operator and each independent variable is seperated by a <em>+</em>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># GLM for BMI using GLOBE study</span>
-glm_bmi &lt;-<span class="st"> </span><span class="kw">glm</span>(phy_bmi_all_<span class="dv">0</span> <span class="op">~</span><span class="st"> </span>sdc_age_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_gender_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_highest_edu_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_income_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>lsb_smk_status_<span class="dv">0</span>, <span class="dt">family =</span> gaussian, <span class="dt">data =</span> globe_data)</code></pre></div>
-<p>Using the <code>&lt;-</code> assignment operator allows us to store the results of this analysis in an R object called glm_bmi. Applying the <code>summary()</code> function on this object allows us to see the results.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># See linear regression results</span>
-<span class="kw">summary</span>(glm_bmi)</code></pre></div>
-<p>The <code>glm()</code> function can also be applied to a categorical outcome by specifi</p>
+glm_bmi_globe &lt;-<span class="st"> </span><span class="kw">glm</span>(phy_bmi_all_<span class="dv">0</span> <span class="op">~</span><span class="st"> </span>sdc_age_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_gender_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_highest_edu_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_income_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>lsb_smk_status_<span class="dv">0</span>, <span class="dt">family =</span> gaussian, <span class="dt">data =</span> globe_data)</code></pre></div>
+<blockquote>
+<p>Note: Using the <code>&lt;-</code> assignment operator allows us to store the results of this analysis in an R object called <em>glm_bmi_globe</em>.</p>
+</blockquote>
+<p>Applying the <code>summary()</code> function on this object allows us to see the results of our regression model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># See linear regression results for GLOBE</span>
+<span class="kw">summary</span>(glm_bmi_globe)</code></pre></div>
 </div>
-<div id="logistic-regression" class="section level2">
-<h2><span class="header-section-number">4.2</span> Logistic regression</h2>
-<p>For</p>
+<div id="pooled" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> Pooled</h3>
+<p>For a pooled analysis, we use the same function, but add the study indicator (i.e. the <em>study</em> variable) in our model to adjust for study effect. Of course the <em>pooled_data</em> dataframe needs to be specified in the <em>data =</em> argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># GLM for BMI using pooled data</span>
+glm_bmi_pooled &lt;-<span class="st"> </span><span class="kw">glm</span>(phy_bmi_all_<span class="dv">0</span> <span class="op">~</span><span class="st"> </span>sdc_age_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_gender_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_highest_edu_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_income_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>lsb_smk_status_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>study, <span class="dt">family =</span> gaussian, <span class="dt">data =</span> pooled_data)</code></pre></div>
+<p>Again, we apply the <code>summary()</code> function on this object to see the results of our regression model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># See linear regression results for pooled data</span>
+<span class="kw">summary</span>(glm_bmi_pooled)</code></pre></div>
+</div>
+</div>
+<div id="logistic-regression-models" class="section level2">
+<h2><span class="header-section-number">4.2</span> Logistic regression models</h2>
+<div id="single-study-1" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Single study</h3>
+<p>The <code>glm()</code> function can also be applied to a categorical outcome by specifying <em>binomial</em> in the <em>family =</em> argument. The example below is a cross-sectional (GLOBE study baseline data) logistic regression with self assessed health (0 = <em>Poor health</em>, 1 = <em>Non poor health</em>) as the outcome and age, sex, education level, household income and smoking status as predictor variables.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># GLM for self assessed health using GLOBE study</span>
+glm_sah_globe &lt;-<span class="st"> </span><span class="kw">glm</span>(poh_sah_poor_<span class="dv">0</span> <span class="op">~</span><span class="st"> </span>sdc_age_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_gender_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_highest_edu_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_income_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>lsb_smk_status_<span class="dv">0</span>, <span class="dt">family =</span> binomial, <span class="dt">data =</span> globe_data)
 
+<span class="co"># See model results</span>
+<span class="kw">summary</span>(glm_sah_globe)</code></pre></div>
+</div>
+<div id="pooled-1" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Pooled</h3>
+<p>As with linear regession, the <em>study</em> variable is added to the pooled logistic regression analyses.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># GLM for self assessed health using pooled data</span>
+glm_sah_pooled &lt;-<span class="st"> </span><span class="kw">glm</span>(poh_sah_poor_<span class="dv">0</span> <span class="op">~</span><span class="st"> </span>sdc_age_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_gender_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_highest_edu_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_income_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>lsb_smk_status_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>study, <span class="dt">family =</span> binomial, <span class="dt">data =</span> pooled_data)
+
+<span class="co"># See model resutls</span>
+<span class="kw">summary</span>(glm_sah_pooled)</code></pre></div>
+
+</div>
 </div>
 </div>
             </section>
