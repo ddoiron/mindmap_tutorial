@@ -171,6 +171,9 @@ glm_bmi_globe &lt;-<span class="st"> </span><span class="kw">glm</span>(phy_bmi_
 <p>Applying the <code>summary()</code> function on this object allows us to see the results of our regression model.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># See linear regression results for GLOBE</span>
 <span class="kw">summary</span>(glm_bmi_globe)</code></pre></div>
+<p>We can use the <code>confint()</code> function to obtain confidence intervals for the coefficients of our models:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Retrieve confidence intervals for GLOBE linear regression results</span>
+<span class="kw">confint</span>(glm_bmi_globe)</code></pre></div>
 </div>
 <div id="pooled" class="section level3">
 <h3><span class="header-section-number">4.1.2</span> Pooled</h3>
@@ -192,6 +195,12 @@ glm_sah_globe &lt;-<span class="st"> </span><span class="kw">glm</span>(poh_sah_
 
 <span class="co"># See model results</span>
 <span class="kw">summary</span>(glm_sah_globe)</code></pre></div>
+<p>For logistic regression models, we exponentiate the coefficients and interpret them as odds-ratios using the following command:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Exponentiate coefficients to interpret them as odds-ratio</span>
+<span class="kw">exp</span>(<span class="kw">coef</span>(glm_sah_globe))</code></pre></div>
+<p>Finally, we can combine odds ratios with confidence intervals using the <code>cbind()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Odds ratios and confidence intervals for GLOBE logistic regression results</span>
+<span class="kw">exp</span>(<span class="kw">cbind</span>(<span class="dt">OR =</span> <span class="kw">coef</span>(glm_sah_globe), <span class="kw">confint</span>(glm_sah_globe)))</code></pre></div>
 </div>
 <div id="pooled-1" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Pooled</h3>
@@ -199,7 +208,7 @@ glm_sah_globe &lt;-<span class="st"> </span><span class="kw">glm</span>(poh_sah_
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># GLM for self assessed health using pooled data</span>
 glm_sah_pooled &lt;-<span class="st"> </span><span class="kw">glm</span>(poh_sah_poor_<span class="dv">0</span> <span class="op">~</span><span class="st"> </span>sdc_age_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_gender_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_highest_edu_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>sdc_income_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>lsb_smk_status_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>study, <span class="dt">family =</span> binomial, <span class="dt">data =</span> pooled_data)
 
-<span class="co"># See model resutls</span>
+<span class="co"># See model results</span>
 <span class="kw">summary</span>(glm_sah_pooled)</code></pre></div>
 
 </div>

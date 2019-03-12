@@ -219,7 +219,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Again, the <code>epiDisplay</code> package provides a useful function to summarise categorical data. Running the <code>tab1()</code> function from this package gives you the frequency and proportion for each category and generates a histogram for a variable. Using <code>tab1()</code> also displays missing data in tables and histograms.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Proportion of Males/Females in GLOBE</span>
 <span class="kw">tab1</span>(globe_data<span class="op">$</span>sdc_gender_<span class="dv">0</span>)
-
 <span class="co"># Proporion of Males/Females in RECORD</span>
 <span class="kw">tab1</span>(record_data<span class="op">$</span>sdc_gender_<span class="dv">0</span>)</code></pre></div>
 </div>
@@ -229,7 +228,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Box plot and histogram of age at baseline for GLOBE Study</span>
 <span class="kw">boxplot</span>(globe_data<span class="op">$</span>sdc_age_<span class="dv">0</span>)
 <span class="kw">hist</span>(globe_data<span class="op">$</span>sdc_age_<span class="dv">0</span>)
-
 <span class="co"># Box plot and histogram of age at baseline for RECORD</span>
 <span class="kw">boxplot</span>(record_data<span class="op">$</span>sdc_age_<span class="dv">0</span>)
 <span class="kw">hist</span>(record_data<span class="op">$</span>sdc_age_<span class="dv">0</span>)</code></pre></div>

@@ -163,13 +163,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Before we conduct longitudinal analyses, we need to transform each dataframe (GLOBE and RECORD) from wide to long format. The following scripts does this transformation for each study and saves the long-format dataframes as <em>globe_data_long</em> and <em>record_data_long</em>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># GLOBE: wide to long format</span>
 globe_data_long &lt;-<span class="st"> </span>globe_data <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(var, value, <span class="op">-</span>entity_id, <span class="op">-</span>study) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(var, value, <span class="op">-</span>id, <span class="op">-</span>study) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">separate</span>(var, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;time&quot;</span>), <span class="dt">sep =</span> (<span class="st">&quot;_(?=[^_]+$)&quot;</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">spread</span>(variable, value)
 
 <span class="co"># RECORD: wide to long format</span>
 record_data_long &lt;-<span class="st"> </span>record_data <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(var, value, <span class="op">-</span>entity_id, <span class="op">-</span>study) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(var, value, <span class="op">-</span>id, <span class="op">-</span>study) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">separate</span>(var, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;time&quot;</span>), <span class="dt">sep =</span> (<span class="st">&quot;_(?=[^_]+$)&quot;</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">spread</span>(variable, value)</code></pre></div>
 <p>Next, we combine GLOBE and RECORD long format dataframes into a pooled dataframe:</p>
@@ -184,28 +184,34 @@ pooled_data_long &lt;-<span class="st"> </span><span class="kw">rbind</span>(glo
 <div id="continuous-outcome-normally-distributed" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> Continuous outcome (normally distributed)</h3>
 <p>The <code>lmer()</code> function from the <code>lme4</code> allows us to fit linear mixed-effect models. In the example below, data for two time points (baseline and follow up 1) of the GLOBE study are fitted with body mass index as the outcome and age, sex, household income and smoking status as predictor variables.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lmm_bmi_globe &lt;-<span class="st"> </span><span class="kw">lmer</span>(phy_bmi_all <span class="op">~</span><span class="st"> </span>sdc_age <span class="op">+</span><span class="st"> </span>sdc_gender <span class="op">+</span><span class="st"> </span>sdc_income <span class="op">+</span><span class="st"> </span>lsb_smk_status <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>entity_id), <span class="dt">data =</span> globe_data_long)
-
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Linear mixed-effect models for BMI using GLOBE study</span>
+lmm_bmi_globe &lt;-<span class="st"> </span><span class="kw">lmer</span>(phy_bmi_all <span class="op">~</span><span class="st"> </span>sdc_age <span class="op">+</span><span class="st"> </span>sdc_gender <span class="op">+</span><span class="st"> </span>sdc_income <span class="op">+</span><span class="st"> </span>lsb_smk_status <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>id), <span class="dt">data =</span> globe_data_long)
+<span class="co"># See model results</span>
 <span class="kw">summary</span>(lmm_bmi_globe)</code></pre></div>
 <p>The results in <em>lmm_bmi_globe</em> do not include p-values. To get p-values, the <code>Anova()</code> function can be used:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Anova</span>(lmm_bmi_globe)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get p-values for LMM results</span>
+<span class="kw">Anova</span>(lmm_bmi_globe)</code></pre></div>
 <p>Below, the same model is fitted to the pooled dataset adding the study indicator variable to the formula.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lmm_bmi_pooled &lt;-<span class="st"> </span><span class="kw">lmer</span>(phy_bmi_all <span class="op">~</span><span class="st"> </span>sdc_age <span class="op">+</span><span class="st"> </span>sdc_gender <span class="op">+</span><span class="st"> </span>sdc_income <span class="op">+</span><span class="st"> </span>lsb_smk_status <span class="op">+</span><span class="st"> </span>study <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>entity_id), <span class="dt">data =</span> pooled_data_long)
-
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Linear mixed-effect models for BMI using pooled data</span>
+lmm_bmi_pooled &lt;-<span class="st"> </span><span class="kw">lmer</span>(phy_bmi_all <span class="op">~</span><span class="st"> </span>sdc_age <span class="op">+</span><span class="st"> </span>sdc_gender <span class="op">+</span><span class="st"> </span>sdc_income <span class="op">+</span><span class="st"> </span>lsb_smk_status <span class="op">+</span><span class="st"> </span>study <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>id), <span class="dt">data =</span> pooled_data_long)
+<span class="co"># See model results</span>
 <span class="kw">summary</span>(lmm_bmi_pooled)
-
+<span class="co"># Get p-values for LMM results</span>
 <span class="kw">Anova</span>(lmm_bmi_pooled)</code></pre></div>
 </div>
 <div id="binary-outcome" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> Binary outcome</h3>
 <p>For binary outcomes, the <code>glmer()</code> function is used to fit a generalized linear mixed-effects model. The example below</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lmm_bmi_pooled_binary &lt;-<span class="st"> </span><span class="kw">glmer</span>(poh_sah_poor <span class="op">~</span><span class="st"> </span>sdc_age <span class="op">+</span><span class="st"> </span>sdc_gender <span class="op">+</span><span class="st"> </span>sdc_income <span class="op">+</span><span class="st"> </span>lsb_smk_status <span class="op">+</span><span class="st"> </span>study <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>entity_id), <span class="dt">data =</span> pooled_data_long_<span class="dv">2</span>, <span class="dt">family =</span> binomial)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Linear mixed-effect models for pooled data</span>
+lmm_bmi_pooled_binary &lt;-<span class="st"> </span><span class="kw">glmer</span>(poh_sah_poor <span class="op">~</span><span class="st"> </span>sdc_age <span class="op">+</span><span class="st"> </span>sdc_gender <span class="op">+</span><span class="st"> </span>sdc_income <span class="op">+</span><span class="st"> </span>lsb_smk_status <span class="op">+</span><span class="st"> </span>study <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>id), <span class="dt">data =</span> pooled_data_long, <span class="dt">family =</span> binomial)</code></pre></div>
 <p>You will get a <em>Convergence warning</em> message. The following webpage provides troubleshooting for such problems: <a href="https://rstudio-pubs-static.s3.amazonaws.com/33653_57fc7b8e5d484c909b615d8633c01d51.html" class="uri">https://rstudio-pubs-static.s3.amazonaws.com/33653_57fc7b8e5d484c909b615d8633c01d51.html</a></p>
 <p>In the example above, the <em>sdc_age</em> variable needs to be scalled. To do this, we used the <code>scale()</code> function and save the scalling resuls as a new variable called <em>sdc_age_sc</em>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pooled_data_long<span class="op">$</span>sdc_age_sc &lt;-<span class="st"> </span><span class="kw">scale</span>(pooled_data_long<span class="op">$</span>sdc_age) </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Scale the age variable</span>
+pooled_data_long<span class="op">$</span>sdc_age_sc &lt;-<span class="st"> </span><span class="kw">scale</span>(pooled_data_long<span class="op">$</span>sdc_age) </code></pre></div>
 <p>This variable then replaces the original <em>sdc_age</em> variable:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lmm_bmi_pooled_binary &lt;-<span class="st"> </span><span class="kw">glmer</span>(poh_sah_poor <span class="op">~</span><span class="st"> </span>sdc_age_sc <span class="op">+</span><span class="st"> </span>sdc_gender <span class="op">+</span><span class="st"> </span>sdc_income <span class="op">+</span><span class="st"> </span>lsb_smk_status <span class="op">+</span><span class="st"> </span>study <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>entity_id), <span class="dt">data =</span> pooled_data_long, <span class="dt">family =</span> binomial)
-
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Re-run LMM using scalled age variable</span>
+lmm_bmi_pooled_binary &lt;-<span class="st"> </span><span class="kw">glmer</span>(poh_sah_poor <span class="op">~</span><span class="st"> </span>sdc_age_sc <span class="op">+</span><span class="st"> </span>sdc_gender <span class="op">+</span><span class="st"> </span>sdc_income <span class="op">+</span><span class="st"> </span>lsb_smk_status <span class="op">+</span><span class="st"> </span>study <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>id), <span class="dt">data =</span> pooled_data_long, <span class="dt">family =</span> binomial)
+<span class="co"># See model results</span>
 <span class="kw">summary</span>(lmm_bmi_pooled_binary)</code></pre></div>
 
 </div>
