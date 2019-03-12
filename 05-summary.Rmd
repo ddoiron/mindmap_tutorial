@@ -1,4 +1,4 @@
-# Additional reading
+# Additional ressources
 
 
 The UCLA Institute for Digital Research and Education provide usefull ressources on R in general (<https://stats.idre.ucla.edu/r/>), as well as information and practical examples on logistic regression (<https://stats.idre.ucla.edu/r/dae/logit-regression/>), and mixed effects logistic regression (<https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/>).
