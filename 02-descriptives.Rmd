@@ -76,7 +76,6 @@ Again, the `epiDisplay` package provides a useful function to summarise categori
 ```{r eval=FALSE}
 # Proportion of Males/Females in GLOBE
 tab1(globe_data$sdc_gender_0)
-
 # Proporion of Males/Females in RECORD
 tab1(record_data$sdc_gender_0)
 ```
@@ -87,7 +86,6 @@ R also allows you to generate graphics and plots to visualise harmonized data. F
 # Box plot and histogram of age at baseline for GLOBE Study
 boxplot(globe_data$sdc_age_0)
 hist(globe_data$sdc_age_0)
-
 # Box plot and histogram of age at baseline for RECORD
 boxplot(record_data$sdc_age_0)
 hist(record_data$sdc_age_0)

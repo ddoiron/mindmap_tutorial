@@ -17,6 +17,13 @@ Applying the `summary()` function on this object allows us to see the results of
 summary(glm_bmi_globe)
 ```
 
+We can use the `confint()` function to obtain confidence intervals for the coefficients of our models:
+```{r eval=FALSE}
+# Retrieve confidence intervals for GLOBE linear regression results
+confint(glm_bmi_globe)
+```
+
+
 ### Pooled
 For a pooled analysis, we use the same function, but add the study indicator (i.e. the *study* variable) in our model to adjust for study effect. Of course the *pooled_data* dataframe needs to be specified in the _data =_ argument.
 ```{r eval=FALSE}
@@ -41,12 +48,25 @@ glm_sah_globe <- glm(poh_sah_poor_0 ~ sdc_age_0 + sdc_gender_0 + sdc_highest_edu
 summary(glm_sah_globe)
 ```
 
+For logistic regression models, we exponentiate the coefficients and interpret them as odds-ratios using the following command:
+```{r eval=FALSE}
+# Exponentiate coefficients to interpret them as odds-ratio
+exp(coef(glm_sah_globe))
+```
+
+Finally, we can combine odds ratios with confidence intervals using the `cbind()` function.
+```{r eval=FALSE}
+# Odds ratios and confidence intervals for GLOBE logistic regression results
+exp(cbind(OR = coef(glm_sah_globe), confint(glm_sah_globe)))
+```
+
+
 ### Pooled
 As with linear regession, the *study* variable is added to the pooled logistic regression analyses.
 ```{r eval=FALSE}
 # GLM for self assessed health using pooled data
 glm_sah_pooled <- glm(poh_sah_poor_0 ~ sdc_age_0 + sdc_gender_0 + sdc_highest_edu_0 + sdc_income_0 + lsb_smk_status_0 + study, family = binomial, data = pooled_data)
 
-# See model resutls
+# See model results
 summary(glm_sah_pooled)
 ```

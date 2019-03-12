@@ -28,22 +28,25 @@ pooled_data_long <- rbind(globe_data_long, record_data_long)
 ### Continuous outcome (normally distributed)
 The `lmer()` function from the `lme4` allows us to fit linear mixed-effect models. In the example below, data for two time points (baseline and follow up 1) of the GLOBE study are fitted with body mass index as the outcome and age, sex, household income and smoking status as predictor variables. 
 ```{r eval=FALSE}
+# Linear mixed-effect models for BMI using GLOBE study
 lmm_bmi_globe <- lmer(phy_bmi_all ~ sdc_age + sdc_gender + sdc_income + lsb_smk_status + (1 | entity_id), data = globe_data_long)
-
+# See model results
 summary(lmm_bmi_globe)
 ```
 
 The results in *lmm_bmi_globe* do not include p-values. To get p-values, the `Anova()` function can be used:
 ```{r eval=FALSE}
+# Get p-values for LMM results
 Anova(lmm_bmi_globe)
 ```
 
 Below, the same model is fitted to the pooled dataset adding the study indicator variable to the formula.
 ```{r eval=FALSE}
+# Linear mixed-effect models for BMI using pooled data
 lmm_bmi_pooled <- lmer(phy_bmi_all ~ sdc_age + sdc_gender + sdc_income + lsb_smk_status + study + (1 | entity_id), data = pooled_data_long)
-
+# See model results
 summary(lmm_bmi_pooled)
-
+# Get p-values for LMM results
 Anova(lmm_bmi_pooled)
 ```
 
@@ -51,6 +54,7 @@ Anova(lmm_bmi_pooled)
 
 For binary outcomes, the `glmer()` function is used to fit a generalized linear mixed-effects model. The example below 
 ```{r eval=FALSE}
+# Linear mixed-effect models for  using pooled data
 lmm_bmi_pooled_binary <- glmer(poh_sah_poor ~ sdc_age + sdc_gender + sdc_income + lsb_smk_status + study + (1 | entity_id), data = pooled_data_long_2, family = binomial)
 ```
 You will get a _Convergence warning_ message. The following webpage provides troubleshooting for such problems: 
@@ -58,13 +62,15 @@ You will get a _Convergence warning_ message. The following webpage provides tro
 
 In the example above, the *sdc_age* variable needs to be scalled. To do this, we used the `scale()` function and save the scalling resuls as a new variable called *sdc_age_sc*: 
 ```{r eval=FALSE}
+# Scale the age variable
 pooled_data_long$sdc_age_sc <- scale(pooled_data_long$sdc_age) 
 ```
 
 This variable then replaces the original *sdc_age* variable:
 ```{r eval=FALSE}
+# Re-run LMM using scalled age variable
 lmm_bmi_pooled_binary <- glmer(poh_sah_poor ~ sdc_age_sc + sdc_gender + sdc_income + lsb_smk_status + study + (1 | entity_id), data = pooled_data_long, family = binomial)
-
+# See model results
 summary(lmm_bmi_pooled_binary)
 ```
 
